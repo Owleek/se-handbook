@@ -1,0 +1,13 @@
+.TileLink {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+
+  height: 100px;
+  padding: 20px;
+  border-radius: 10px;
+
+  background-color: #434e78;
+  color: #fff !important;
+  text-decoration: none !important;
+}
