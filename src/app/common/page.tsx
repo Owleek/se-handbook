@@ -5,6 +5,7 @@ export default function Javascript() {
   return (
     <TileGrid>
       <TileLink href='/common/url'>URL</TileLink>
+      <TileLink href='/common/browser'>Browser</TileLink>
     </TileGrid>
   );
 }
