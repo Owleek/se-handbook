@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import { SectionNavigation } from '@/shared/ui/SectionNavigation';
 
 export default function Layout({
   children,
@@ -7,10 +7,7 @@ export default function Layout({
 }>) {
   return (
     <div>
-      <div className='PageLinks'>
-        <Link href='/'>Home</Link>
-        <Link href='/javascript'>Topics</Link>
-      </div>
+      <SectionNavigation sectionLabel='Common' sectionHref='/common' />
       {children}
     </div>
   );

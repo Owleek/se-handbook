@@ -1,13 +1,5 @@
-import React from "react"
-import Link from "next/link"
+import React from 'react';
 
 export default function English() {
-    return (
-            <p>
-                <div className="backtohome">
-                    <Link href="/">&laquo;</Link>
-                </div>
-                English
-            </p>
-    )
+  return <p>English</p>;
 }

@@ -7,6 +7,7 @@ export default function Javascript() {
       <TileLink href='/common/url'>URL</TileLink>
       <TileLink href='/common/browser'>Browser</TileLink>
       <TileLink href='/common/eventLoop'>EventLoop</TileLink>
+      <TileLink href='/common/lossnp'>Loss of number precision</TileLink>
     </TileGrid>
   );
 }

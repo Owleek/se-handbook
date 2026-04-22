@@ -7,7 +7,7 @@ export default function Layout({
 }>) {
   return (
     <div>
-      <SectionNavigation sectionLabel='Javascript' sectionHref='/javascript' />
+      <SectionNavigation sectionLabel='English' sectionHref='/english' />
       {children}
     </div>
   );
