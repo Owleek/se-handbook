@@ -3,7 +3,7 @@ import { Note, NoteItem } from '@/shared/ui/Note';
 
 export default function Template() {
   return (
-    <Note title='HTTP'>
+    <Note title='Hypertext transfer protocol'>
       <NoteItem>
         <p>
           <p>Http 0.9 </p>
