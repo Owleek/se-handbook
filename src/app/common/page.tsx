@@ -6,6 +6,7 @@ export default function Javascript() {
     <TileGrid>
       <TileLink href='/common/osi'>OSI</TileLink>
       <TileLink href='/common/http'>HTTP</TileLink>
+      <TileLink href='/common/rest'>REST</TileLink>
       <TileLink href='/common/browser'>Browser</TileLink>
       <TileLink href='/common/url'>Uniform resource locator</TileLink>
       <TileLink href='/common/crp'>Critical render path</TileLink>
