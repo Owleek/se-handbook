@@ -5,6 +5,7 @@ export default function Home() {
     <main className='HomePageMain'>
       <TileGrid>
         <TileLink href='/common'>Common</TileLink>
+        <TileLink href='/network'>Network</TileLink>
         <TileLink href='/english'>English</TileLink>
         <TileLink href='/javascript'>Javascript</TileLink>
         <TileLink href='/typescript'>Typescript</TileLink>
