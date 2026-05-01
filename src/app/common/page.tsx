@@ -9,6 +9,8 @@ export default function Javascript() {
       <TileLink href='/common/crp'>Critical render path</TileLink>
       <TileLink href='/common/eventLoop'>EventLoop</TileLink>
       <TileLink href='/common/lossnp'>Loss of number precision</TileLink>
+      <TileLink href='/common/caching'>Caching</TileLink>
+      <TileLink href='/common/safety'>Safety</TileLink>
     </TileGrid>
   );
 }
