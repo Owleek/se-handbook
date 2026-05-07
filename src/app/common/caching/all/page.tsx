@@ -71,6 +71,8 @@ export default function Template() {
           принятие факта утери данных и последующее удаление кеша. <br />
         </p>
         <br />
+        <br />
+        <p>Proxy, CDN</p>
       </NoteItem>
     </Note>
   );
