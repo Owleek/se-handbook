@@ -7,6 +7,7 @@ export default function Javascript() {
       <TileLink href='/common/caching/restHeaders'>REST headers</TileLink>
       <TileLink href='/common/caching/all'>All</TileLink>
       <TileLink href='/common/caching/serverCaching'>Server caching</TileLink>
+      <TileLink href='/common/caching/dbCaching'>Data Base caching</TileLink>
     </TileGrid>
   );
 }
