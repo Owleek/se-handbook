@@ -1,7 +1,7 @@
 import React from 'react';
 import { Note, NoteItem } from '@/shared/ui/Note';
 
-export default function Crp() {
+export default function Template() {
   return (
     <Note title='Critical render path'>
       <NoteItem>

@@ -1,9 +1,9 @@
 import React from 'react';
 import { Note, NoteItem } from '@/shared/ui/Note';
 
-export default function EventLoop() {
+export default function Template() {
   return (
-    <Note title='EventLoop'>
+    <Note title='Event loop'>
       <NoteItem>
         <p>
           Это механизм выполнения синхронных и асинхронных задач при условии

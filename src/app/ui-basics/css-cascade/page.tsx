@@ -3,7 +3,7 @@ import { Note, NoteItem } from '@/shared/ui/Note';
 
 export default function Template() {
   return (
-    <Note title='Специфичность'>
+    <Note title='Каскадность и специфичность'>
       <NoteItem>
         <div>
           <p>

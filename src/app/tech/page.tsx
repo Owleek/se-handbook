@@ -4,7 +4,7 @@ import { TileGrid, TileLink } from '@/shared/ui/Tile';
 export default function Javascript() {
   return (
     <TileGrid>
-      <TileLink href='/css/priority'>Каскадность / Специфичность</TileLink>
+      <TileLink href='/tech/js'>JS</TileLink>
     </TileGrid>
   );
 }

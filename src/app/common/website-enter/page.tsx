@@ -3,9 +3,9 @@ import { Note, NoteItem } from '@/shared/ui/Note';
 
 export default function Template() {
   return (
-    <Note title='URL'>
+    <Note title='Website enter following actions'>
       <NoteItem>
-        <h3>Что происходит после ввода url в адресную строку ?</h3>
+        <h3>Что происходит после нажатия enter в адресной строке браузера ?</h3>
         <br />
         <p>
           Для совершения запроса по введенному урлу, браузеру необходимо узнать

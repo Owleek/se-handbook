@@ -7,7 +7,7 @@ export default function Layout({
 }>) {
   return (
     <div>
-      <SectionNavigation sectionLabel='CSS' sectionHref='/css' />
+      <SectionNavigation sectionLabel='UI-Basics' sectionHref='/ui-basics' />
       {children}
     </div>
   );
