@@ -7,6 +7,7 @@ export default function Template() {
       <TileLink href='/common/browser/architecture'>Architecture</TileLink>
       <TileLink href='/common/browser/event-loop'>Event loop</TileLink>
       <TileLink href='/common/browser/crp'>Critical render path</TileLink>
+      <TileLink href='/common/browser/storage'>Storage</TileLink>
     </TileGrid>
   );
 }
