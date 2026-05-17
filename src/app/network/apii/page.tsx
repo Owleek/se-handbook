@@ -8,6 +8,9 @@ export default function Javascript() {
       <TileLink href='/network/apii/cookies'>Cookies</TileLink>
       <TileLink href='/network/apii/graphql'>GraphQL</TileLink>
       <TileLink href='/network/apii/soap'>SOAP</TileLink>
+      <TileLink href='/network/apii/realtimeupdates'>
+        Real-time updates
+      </TileLink>
     </TileGrid>
   );
 }
