@@ -3,7 +3,7 @@ import { Note, NoteItem } from '@/shared/ui/Note';
 
 export default function Template() {
   return (
-    <Note title='Real-time updates'>
+    <Note title='Real-time updates / polling / SSE / Websocket'>
       <NoteItem>
         <p>
           <p>
