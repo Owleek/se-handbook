@@ -1,13 +1,17 @@
 import React from 'react';
 import Link from 'next/link';
+import cn from 'classnames';
 import './TileLink.css';
 
-export function TileLink({
-  children,
-  href,
-}: Readonly<{ children: React.ReactNode; href: string }>) {
+interface IProps {
+  children: React.ReactNode;
+  href: string;
+  type?: 'ghost';
+}
+
+export function TileLink({ children, href, type }: IProps) {
   return (
-    <Link href={href} className='TileLink'>
+    <Link href={href} className={cn('TileLink', type)}>
       {children}
     </Link>
   );
