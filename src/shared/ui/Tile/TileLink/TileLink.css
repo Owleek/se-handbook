@@ -11,3 +11,8 @@
   color: #fff !important;
   text-decoration: none !important;
 }
+
+.TileLink.ghost {
+  pointer-events: none !important;
+  opacity: 0.4;
+}
