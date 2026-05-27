@@ -9,6 +9,7 @@ export default function Javascript() {
       <TileLink href='/common/lossnp'>Loss of number precision</TileLink>
       <TileLink href='/common/caching'>Caching</TileLink>
       <TileLink href='/common/safety'>Safety</TileLink>
+      <TileLink href='/common/auth'>Auth</TileLink>
     </TileGrid>
   );
 }
