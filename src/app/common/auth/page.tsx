@@ -6,6 +6,7 @@ export default function Template() {
     <TileGrid>
       <TileLink href='/common/auth/basics'>Basics</TileLink>
       <TileLink href='/common/auth/sso'>Single Sign-On / OAuth 2.0</TileLink>
+      <TileLink href='/common/auth/resume'>Resume</TileLink>
     </TileGrid>
   );
 }
