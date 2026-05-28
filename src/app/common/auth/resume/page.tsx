@@ -21,17 +21,25 @@ export default function Template() {
           </p>
           <br />
           <p>{'==>'} Пользователь нажал на логин через Single Sign-on гугла</p>
+          <br />
+          <p>Или через frontend</p>
           <p>
             {'==>'} react-oauth/google под капотом начинает authorization flow
           </p>
-          <p>{'==>'} Создает строку для state</p>
+          <br />
+          <p>Но чаще всего, в надежных системах через backend</p>
+          <br />
+          <p>{'==>'} frontend делает запрос к backend для авторизации</p>
+          <p>{'==>'} а дальше Backend Создает строку для state</p>
           <p>
             {'==>'} Создает строку code_verifier, хеширует ее криптографическим
             алгоритмом и получает хеш - code_challange
           </p>
           <p>
-            {'==>'} Прикрепляет к url: state, code_challange, callback_uri,
-            clientid(id - приложения), scope=openid *...* и редиректит к гуглу
+            {'==>'} Формирует новый url и к нему прикрепляет: state,
+            code_challange, callback_uri, clientid(id - приложения),
+            scope=openid *...* и отвечает frontend-у 302 (редирект) Location:
+            googleurl
           </p>
           <br />
           <p>
@@ -41,17 +49,14 @@ export default function Template() {
           <p>{'==>'} Гугл (OAuth/Idendity provider) сохраняет code_challange</p>
           <p>
             {'==>'} Генерирует authorization_code, прикрепляет к callback_uri:
-            state и authorization_code и редиректит по этому uri к
+            state и authorization_code и редиректит по этому uri, это uri это
+            выполнение backend операций, в это время пользователь может видеть
+            белую страницу
           </p>
-          <br />
           <p>
-            {'==>'} Frontend отправляет authorization_code, code_verifier и
-            алгоритм хеширования на свой backend
-          </p>
-          <br />
-          <p>
-            {'==>'} Backend делает запрос к Idendity provider прикрепив к
-            запросу, authorization_code, code_verifier и алгоритм хеширования
+            {'==>'} Backend тем временем делает запрос к Idendity provider
+            прикрепив к запросу, authorization_code, code_verifier и алгоритм
+            хеширования
           </p>
           <p>
             {'==>'} Idendity provider находит сохраненные данные по
@@ -80,9 +85,19 @@ export default function Template() {
             пользователя
           </p>
           <p>
-            {'==>'} refresh_token устнаваливает в httpOnly куку, а access_token
-            устанавливает в заголовок либо в тело ответного запроса и возвращает
-            его frontend
+            {'==>'} затем для белой страницы отвечает редиректом на приложение
+            /api/me
+          </p>
+
+          <p>
+            {'==>'} пользователь оказывается на странице приложения, с
+            автоматическим запросом /api/me
+            <br />
+          </p>
+          <p>
+            {'==>'} backend отвечает frontend установлением refresh_token в
+            httpOnly куку а access_token устанавливает в заголовок либо в тело
+            ответного запроса и возвращает его frontend
           </p>
           <p>
             {'==>'} С момента получения access_token frontend-ом, пользователь
