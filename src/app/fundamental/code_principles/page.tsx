@@ -6,6 +6,7 @@ export default function Javascript() {
     <TileGrid>
       <TileLink href='/fundamental/code_principles/oop'>OOP</TileLink>
       <TileLink href='/fundamental/code_principles/solid'>SOLID</TileLink>
+      <TileLink href='/fundamental/code_principles/other'>Other</TileLink>
     </TileGrid>
   );
 }
