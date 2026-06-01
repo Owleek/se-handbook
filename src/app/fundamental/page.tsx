@@ -4,6 +4,7 @@ import { TileGrid, TileLink } from '@/shared/ui/Tile';
 export default function Javascript() {
   return (
     <TileGrid>
+      <TileLink href='/fundamental/code_approaches'>Code Approaches</TileLink>
       <TileLink href='/fundamental/code_principles'>Code Principles</TileLink>
     </TileGrid>
   );
