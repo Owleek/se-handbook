@@ -3,8 +3,9 @@ import { Note, NoteItem } from '@/shared/ui/Note';
 
 export default function Template() {
   return (
-    <Note title='Слои и их ответственнсти'>
+    <Note title='Архитектурные дизайн системы'>
       <NoteItem>
+        <p>FSD</p>
         <p>
           Самое главное в построении архитектуры приложения - это следовать
           принципу High cohesion & Low Coupling
@@ -38,6 +39,54 @@ export default function Template() {
           решений
         </p>
         <br />
+        <p>entity сущность user (модуль):</p>
+        <p>
+          <pre>
+            {`
+              entities/
+                    └── user/
+                        ├── model/
+                        │   ├── types.ts
+                        │   ├── store.ts
+                        │   ├── selectors.ts
+                        │   └── hooks.ts
+                        │
+                        ├── api/
+                        │   ├── userApi.ts
+                        │   ├── dto/
+                        │   └── mappers/
+                        │
+                        ├── ui/
+                        │   ├── UserAvatar.tsx
+                        │   └── UserCard.tsx
+                        │
+                        ├── lib/
+                        │   ├── formatUserName.ts
+                        │   └── getUserRole.ts
+                        │
+                        └── index.ts
+            `}
+            {`
+              dto/
+                ├── user.dto.ts
+                ├── update-user.dto.ts
+                └── index.ts
+            `}
+            {`
+              Или + часть от DDD
+              entities/user/
+                        ├─ domain/
+                        ├─ repositories/
+                        ├─ model/
+                        ├─ api/
+                        ├─ lib/
+                        └─ ui/
+              `}
+          </pre>
+        </p>
+        <p></p>
+        <p>Monorepository</p>
+        <p></p>
         <p>DTO</p>
         <p>repositories</p>
         <p>domain</p>
