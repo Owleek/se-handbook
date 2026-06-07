@@ -64,71 +64,110 @@ export default function Template() {
           решений
         </p>
         <br />
-        <p>entity сущность user (модуль):</p>
+        <p>entity бизнес-сущность модуль-user:</p>
         <p>
           <pre>
             {`
-              entities/
-                    └── user/
-                        ├── model/
-                        │   ├── types.ts
-                        │   ├── store.ts
-                        │   ├── selectors.ts
-                        │   └── hooks.ts
-                        │
-                        ├── api/
-                        │   ├── userApi.ts
-                        │   ├── dto/
-                        │   └── mappers/
-                        │
-                        ├── ui/
-                        │   ├── UserAvatar.tsx
-                        │   └── UserCard.tsx
-                        │
-                        ├── lib/
-                        │   ├── formatUserName.ts
-                        │   └── getUserRole.ts
-                        │
-                        └── index.ts
+              ├── entities/
+              │      ├── cart
+              │      ├── product
+              │      └── user/
+              │          ├── @x ....
+              │          ├── domain/
+              │          │     ├── User.ts
+              │          │     ├── UserRules.ts
+              │          │     ├── UserPolicy.ts
+              │          │     └── RBAC.ts
+              │          │
+              │          ├── repositories/
+              │          │     └── UserRepository.ts
+              │          │
+              │          ├── infrastructure/
+              │          │      ├── model/
+              │          │      │     ├── types.ts
+              │          │      │     ├── store.ts
+              │          │      │     ├── selectors.ts
+              │          │      │     └── hooks.ts
+              │          │      │
+              │          │      ├── api/
+              │          │      │     ├── ApiUserRepository.ts
+              │          │      │     ├── dto/
+              │          │      │     │    ├── user.dto.ts
+              │          │      │     │    ├── update-user.dto.ts
+              │          │      │     │    └── index.ts
+              │          │      │     │    
+              │          │      │     └── mappers/
+              │          │      │          ├── mapto.domain.ts
+              │          │      │          ├── mapto.dto.ts
+              │          │      │          └── index.ts
+              │          │      │          
+              │          │      ├── ui/
+              │          │      │     ├── UserAvatar.tsx
+              │          │      │     └── UserCard.tsx
+              │          │      │
+              │          │      └── lib/
+              │          │            ├── formatUserName.ts
+              │          │            └── RoleUserRepository.ts
+              │          │            
+              │          └── index.ts
             `}
+          </pre>
+          <p>
+            domain и repositories &mdash; исключительно бизнесовая система
+            независящая от фреймфорков и API, это описание данных, правил,
+            политики, ролей, и интерфейс работы этого модуля <br />
+            repositories - содержит Абстрактную модель работы модуля,
+            инфраструктурный код должен имплементировать модель работы модуля, а
+            остальные составляющие бизнеса находятся в domain
+          </p>
+          <br />
+          <p>
+            infrastructure - это уже как раз слой имплементирующий весь бизнес
+            слой <br /> На данном слое не важны виды используемых технологий или
+            подходов, важно в точности имплементировать бизнес слой
+          </p>
+          <br />
+          <p>
+            index.ts - публичный api для компонентов модуля, импорт разрешен
+            только из публичного api
+          </p>
+          <br />
+          <p>shared слой:</p>
+          <br />
+          <pre>
             {`
-              dto/
-                ├── user.dto.ts
-                ├── update-user.dto.ts
-                └── index.ts
+              │
+              └── shared/
+                     ├── ui
+                     │    ├── ...
+                     │    ├── Input
+                     │    └── Button
+                     ├── assets
+                     ├── lib
             `}
-            {`
-              Или + часть от DDD
-              entities/user/
-                        ├─ domain/
-                        ├─ repositories/
-                        ├─ model/
-                        ├─ api/
-                        ├─ lib/
-                        └─ ui/
-              `}
           </pre>
         </p>
-        <p></p>
+        <br />
         <p>Monorepository</p>
         <p></p>
         <p>DTO</p>
-        <p>repositories</p>
-        <p>domain</p>
-        <p>infrastructure</p>
+
         <p>config</p>
         <p>settings</p>
         <p>client</p>
         <p>adapters</p>
-        <p>mappers</p>
-        <p>interceptors</p>
+
+        <p>
+          interceptors - это вклинивание во все запросы, удобно использовать
+          чтобы подставлять токен
+        </p>
+
         <p>routes</p>
-        <p>dto</p>
+
         <p>schema</p>
-        <p>model</p>
+
         <p>features</p>
         <p>entities</p>
-        <p>utils</p>
       </NoteItem>
     </Note>
   );
