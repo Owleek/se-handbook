@@ -64,16 +64,72 @@ export default function Template() {
           решений
         </p>
         <br />
-        <p>entity бизнес-сущность модуль-user:</p>
         <p>
           <pre>
             {`
+            src/
+              ├── app/
+              │      ├── providers/
+              │      │    ├── StoreProvider
+              │      │    |    └── store
+              │      │    |    
+              │      │    └── router/ -- если не Next
+              │      │         ├── routes.ts
+              │      │         └── index.tsx
+              │      │         
+              │      ├── styles/
+              │      |    ├── reset.ts
+              │      |    ├── global.ts
+              │      |    └── style.scss
+              │      │
+              │      ├── mainPage/
+              |      |    └── page.tsx
+              |      |    
+              │      ├── contactPage/
+              │      |    └── page.tsx
+              │      |    
+              │      ├── layout.tsx
+              │      └── page.tsx
+              │
+              ├── pages/ -- если это Next то этого раздела 
+              │      |      может не быть, либо быть но клиентским
+              |      |
+              │      ├── mainPage/
+              │      |    ├── model
+              │      |    ├── api
+              │      |    ├── ui
+              │      |    └── lib
+              │      |    
+              │      └── contactPage/
+              │           ├── model
+              │           ├── api
+              │           ├── ui
+              │           └── lib
+              |
+              ├── widgets/
+              │      ├── Header
+              │      ├── Footer
+              │      ├── PromoBanner
+              │      └── Recommendations
+              │           ├── model
+              │           ├── api
+              │           ├── ui
+              │           └── lib
+              |
+              ├── features/
+              │      ├── search/
+              │      └── Auth/
+              │          ├── model
+              │          ├── api
+              │          ├── ui
+              │          └── lib
+              │      
               ├── entities/
               │      ├── cart
               │      ├── product
               │      └── user/
               │          ├── @x/
-              │          │     ├── cart
+              │          │     ├── cart/
               │          │     └── product/
               │          │           └── index.ts
               │          │     
@@ -114,8 +170,54 @@ export default function Template() {
               │          │           └── RoleUserRepository.ts
               │          │            
               │          └── index.ts
+              │          
+              └── shared/
+                    ├── ui/
+                    │    ├── Input
+                    │    └── Button
+                    │    
+                    ├── assets/
+                    ├── api/
+                    ├── config/
+                    ├── lib/
+                    │     ├── debounce
+                    │     ├── throttle
+                    │     └── formatDate
+                    │     
+                    └── services/
+                         ├── geoService.ts
+                         ├── analiticsService.ts
+                         ├── EventBuss.ts
+                         ├── theme/
+                         └── i18n/
+              
             `}
           </pre>
+          <p>
+            pages &mdash; если разрабатываемая страница не большая, то нет
+            смысла ее дробить на все слои fsd, все мини-составляющие можно
+            хранить в этом разделе страницы.
+            <br /> это принцип High cohesion, если же составляющие начнут
+            переиспользоваться, тогда нужно дробить
+          </p>
+          <br />
+          <p>
+            widgets &mdash; ограниченный блок, может быть как в единственном
+            виде а может быть и переиспользуемым
+          </p>
+          <br />
+          <p>
+            features &mdash; по fsd стоит выше чем entities, идея такая что
+            entities - это данные, а features это useCases которые используют
+            эти данные.
+            <br />
+            Однако если рассматривать entity как доменную сущность, то уже фича
+            будет находится в составе доменной области, а значит пока возможно,
+            код не стоит размазывать по слоям, поддерживать high cohesion
+            (co-location)
+          </p>
+          <br />
+          <p>entity &mdash; бизнес-сущность модуль-user:</p>
           <p>
             domain и repositories &mdash; исключительно бизнесовая система
             независящая от фреймфорков и API, это описание данных, правил,
@@ -129,6 +231,13 @@ export default function Template() {
             infrastructure - это уже как раз слой имплементирующий весь бизнес
             слой <br /> На данном слое не важны виды используемых технологий или
             подходов, важно в точности имплементировать бизнес слой
+          </p>
+          <br />
+          <p>
+            Папки domain, repositories и infrastructure - показаны как пример
+            гибридного подхода, когда такие структуры как domain и repositories
+            перекочевали из DDD (Domain Driven Development), однако чистый fsd
+            их не использует, а потому слой features показан уже без DDD
           </p>
           <br />
           <p>
@@ -148,42 +257,62 @@ export default function Template() {
             модули напрямую зависят от текущего модуля
           </p>
           <br />
-          <p>shared слой:</p>
-          <br />
-          <pre>
-            {`
-              │
-              └── shared/
-                     ├── ui
-                     │    ├── ...
-                     │    ├── Input
-                     │    └── Button
-                     ├── assets
-                     ├── lib
-            `}
-          </pre>
+          <p>
+            shared &mdash; должен содержать код никак не относящийся к бизнесу,
+            папка shared/lib этому пример, там вспомогательные утилиты которые
+            никак не завязаны на бизнес
+          </p>
+          <p>
+            содержимое папки services в Shared технически можно вынести в
+            отдельный слой infrastructure(отойди при этом от FSD)
+          </p>
         </p>
         <br />
-        <p>Monorepository</p>
-        <p></p>
-        <p>DTO</p>
-
-        <p>config</p>
-        <p>settings</p>
-        <p>client</p>
-        <p>adapters</p>
-
         <p>
-          interceptors - это вклинивание во все запросы, удобно использовать
-          чтобы подставлять токен
+          FSD по своим доменным(entities) сущностям может быть расширено:
+          <pre>
+            {`
+                   app
+                   shared
+                   domains
+                     ├── domain-cart/
+                     ├── domain-product/
+                     └── domain-user/
+                            ├── src/
+                            |     ├── app
+                            |     ├── pages
+                            |     ├── widgets
+                            |     ├── entities
+                            |     ├── features
+                            |     └── shared
+                            |     
+                            ├── ...
+                            └── README.MD
+                                
+                    
+                `}
+          </pre>
         </p>
-
-        <p>routes</p>
-
-        <p>schema</p>
-
-        <p>features</p>
-        <p>entities</p>
+        <p>
+          Monorepository &mdash; приложение может быть на одном либо на
+          нескольких(полирепозоторий), на одном удобнее и быстрее обновление
+        </p>
+        <p>
+          DTO &mdash; это объект такого вида, котороым обмениватся между собой
+          frontend и backend
+        </p>
+        <p>
+          client &mdash; это api клиент, входная точка для работы с запросами
+        </p>
+        <p>
+          adapters - это функции адаптирующие данные в нужный вид, эквивалентны
+          мапперам mapto.domain.ts
+        </p>
+        <p>
+          interceptors &mdash; это фича axios, вклинивание во все запросы,
+          удобно использовать чтобы подставлять токен
+        </p>
+        <p>schema - структура, схема, описание, форма чего либо</p>
       </NoteItem>
     </Note>
   );
