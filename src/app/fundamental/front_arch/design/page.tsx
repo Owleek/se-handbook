@@ -72,7 +72,11 @@ export default function Template() {
               │      ├── cart
               │      ├── product
               │      └── user/
-              │          ├── @x ....
+              │          ├── @x/
+              │          │     ├── cart
+              │          │     └── product/
+              │          │           └── index.ts
+              │          │     
               │          ├── domain/
               │          │     ├── User.ts
               │          │     ├── UserRules.ts
@@ -83,31 +87,31 @@ export default function Template() {
               │          │     └── UserRepository.ts
               │          │
               │          ├── infrastructure/
-              │          │      ├── model/
-              │          │      │     ├── types.ts
-              │          │      │     ├── store.ts
-              │          │      │     ├── selectors.ts
-              │          │      │     └── hooks.ts
-              │          │      │
-              │          │      ├── api/
-              │          │      │     ├── ApiUserRepository.ts
-              │          │      │     ├── dto/
-              │          │      │     │    ├── user.dto.ts
-              │          │      │     │    ├── update-user.dto.ts
-              │          │      │     │    └── index.ts
-              │          │      │     │    
-              │          │      │     └── mappers/
-              │          │      │          ├── mapto.domain.ts
-              │          │      │          ├── mapto.dto.ts
-              │          │      │          └── index.ts
-              │          │      │          
-              │          │      ├── ui/
-              │          │      │     ├── UserAvatar.tsx
-              │          │      │     └── UserCard.tsx
-              │          │      │
-              │          │      └── lib/
-              │          │            ├── formatUserName.ts
-              │          │            └── RoleUserRepository.ts
+              │          │     ├── model/
+              │          │     │     ├── types.ts
+              │          │     │     ├── store.ts
+              │          │     │     ├── selectors.ts
+              │          │     │     └── hooks.ts
+              │          │     │
+              │          │     ├── api/
+              │          │     │     ├── ApiUserRepository.ts
+              │          │     │     ├── dto/
+              │          │     │     │    ├── user.dto.ts
+              │          │     │     │    ├── update-user.dto.ts
+              │          │     │     │    └── index.ts
+              │          │     │     │    
+              │          │     │     └── mappers/
+              │          │     │          ├── mapto.domain.ts
+              │          │     │          ├── mapto.dto.ts
+              │          │     │          └── index.ts
+              │          │     │          
+              │          │     ├── ui/
+              │          │     │     ├── UserAvatar.tsx
+              │          │     │     └── UserCard.tsx
+              │          │     │
+              │          │     └── lib/
+              │          │           ├── formatUserName.ts
+              │          │           └── RoleUserRepository.ts
               │          │            
               │          └── index.ts
             `}
@@ -130,6 +134,18 @@ export default function Template() {
           <p>
             index.ts - публичный api для компонентов модуля, импорт разрешен
             только из публичного api
+          </p>
+          <br />
+          <p>
+            В тех случаях когда приходится использовать кроссимпорты, в
+            импортируемом модуле мы явно создаем api для импортируещего модуля и
+            только то что ему действительно требуется, например:
+            @x/name_импортируюшего_модуля/index.ts, а импортирующий модуль
+            испортирует уже не из корня модуля а из предназначенной для него
+            папки в @x/
+            <br />
+            Таким образом зайдя в папку @x любого модуля, мы узнаем, какие
+            модули напрямую зависят от текущего модуля
           </p>
           <br />
           <p>shared слой:</p>
