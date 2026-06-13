@@ -9,9 +9,7 @@ export default function Javascript() {
       <TileLink href='/network/apii/realtimeupdates'>
         Real-time updates
       </TileLink>
-      <TileLink href='/network/apii/graphql' type='ghost'>
-        GraphQL
-      </TileLink>
+      <TileLink href='/network/apii/graphql'>GraphQL</TileLink>
       <TileLink href='/network/apii/soap' type='ghost'>
         SOAP
       </TileLink>
