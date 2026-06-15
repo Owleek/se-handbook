@@ -10,6 +10,9 @@ export default function Javascript() {
         Real-time updates
       </TileLink>
       <TileLink href='/network/apii/graphql'>GraphQL</TileLink>
+      <TileLink href='/network/apii/graphql' type='ghost'>
+        Webhooks
+      </TileLink>
       <TileLink href='/network/apii/soap' type='ghost'>
         SOAP
       </TileLink>
