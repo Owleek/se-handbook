@@ -7,9 +7,10 @@ export default function Template() {
       <NoteItem>
         <p>Причины</p>
         <p>Генерация / Flow / technologies</p>
-        <p>Сборка</p>
         <p>Hydration</p>
-        <p>Архитектура</p>
+        <p>Webhooks</p>
+        <p>Сборка</p>
+        <p>Deployment</p>
       </NoteItem>
     </Note>
   );
