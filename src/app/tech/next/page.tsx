@@ -36,6 +36,98 @@ export default function Template() {
           дальне Next сам будет заниматься оркестрацией серверных и клиентских
           компонентов
         </p>
+        <br />
+        <p>cookies(), headers(), params</p>
+        <br />
+        <br />
+        <pre className='fz-12'>
+          {`
+├── app/                           (главная папка App Router)
+
+│   ├── layout.tsx                 (корневой layout всего сайта)
+│   ├── page.tsx                   (главная страница "/")
+
+│   ├── login/
+│   │   └── page.tsx               ("/login")
+
+│   ├── profile/
+│   │   └── page.tsx               ("/profile")
+
+│   ├── products/
+│   │   ├── page.tsx               ("/products")
+│   │   └── [id]/
+│   │       └── page.tsx           ("/products/123")
+
+│   ├── orders/
+│   │   └── [orderId]/
+│   │       └── page.tsx           ("/orders/555")
+
+│   ├── api/                       (BFF endpoints)
+
+│   │   ├── profile/
+│   │   │   └── route.ts           (GET /api/profile)
+
+│   │   ├── auth/
+│   │   │   ├── login/
+│   │   │   │   └── route.ts       (POST /api/auth/login)
+│   │   │   └── logout/
+│   │   │       └── route.ts       (POST /api/auth/logout)
+
+│   │   └── products/
+│   │       └── [id]/
+│   │           └── route.ts       (GET /api/products/123)
+
+│   ├── loading.tsx                (глобальный loading)
+│   ├── error.tsx                  (глобальный error)
+│   └── not-found.tsx              (404)
+
+│
+├── components/                    (переиспользуемые UI-компоненты)
+
+│   ├── Header.tsx
+│   ├── Sidebar.tsx
+│   ├── ProductCard.tsx
+│   └── Button.tsx
+
+│
+├── services/                      (работа с внешними API)
+
+│   ├── auth.service.ts
+│   ├── user.service.ts
+│   ├── product.service.ts
+│   └── order.service.ts
+
+│
+├── lib/                           (общие утилиты)
+
+│   ├── fetcher.ts
+│   ├── cookies.ts
+│   ├── auth.ts
+│   └── logger.ts
+
+│
+├── types/
+
+│   ├── user.ts
+│   ├── product.ts
+│   └── order.ts
+
+│
+├── middleware.ts                  (middleware Next)
+
+│
+├── public/                        (статика)
+
+│   ├── logo.svg
+│   └── images/
+
+│
+├── .env
+├── next.config.ts
+├── package.json
+└── tsconfig.json
+        `}
+        </pre>
       </NoteItem>
     </Note>
   );
