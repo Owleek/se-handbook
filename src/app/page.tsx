@@ -9,9 +9,6 @@ export default function Home() {
         <TileLink href='/ui-basics'>UI Basics</TileLink>
         <TileLink href='/tech'>Tech</TileLink>
         <TileLink href='/fundamental'>Fundamental</TileLink>
-        <TileLink href='/en' type='ghost'>
-          En
-        </TileLink>
       </TileGrid>
     </main>
   );

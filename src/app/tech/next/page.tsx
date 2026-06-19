@@ -37,10 +37,33 @@ export default function Template() {
           компонентов
         </p>
         <br />
-        <p>cookies(), headers(), params</p>
+        <p>cookies()</p>
+        <p>headers()</p>
+        <p>params</p>
         <br />
+        <p>
+          Cтандарт Web API <br /> общий для любой стороны, как для клиента так и
+          для сервера
+        </p>
+        Cтандарт Web API: <br />
+        Request <br />
+        Response <br />
+        Headers <br />
+        URL <br />
+        <p>
+          На клиенте конструкторы классов предоставляет сам браузер а на сервере
+          Node в globalThis
+        </p>
         <br />
-        <pre className='fz-12'>
+        <p>
+          globalThis.Request <br />
+          globalThis.Response <br />
+          globalThis.Headers <br />
+          globalThis.URL <br />
+          globalThis.fetch <br />
+        </p>
+        <br />
+        <pre>
           {`
 ├── app/                           (главная папка App Router)
 
@@ -90,12 +113,20 @@ export default function Template() {
 │   └── Button.tsx
 
 │
-├── services/                      (работа с внешними API)
+├── services/                      (работа с репозиториями)
 
 │   ├── auth.service.ts
 │   ├── user.service.ts
 │   ├── product.service.ts
 │   └── order.service.ts
+
+├── repositories/                      (репозитории, работа с внешними API)
+
+│   ├── auth.repository.ts
+│   ├── user.repository.ts
+│   ├── product.repository.ts
+│   └── order.repository.ts
+
 
 │
 ├── lib/                           (общие утилиты)
@@ -128,6 +159,74 @@ export default function Template() {
 └── tsconfig.json
         `}
         </pre>
+        <br />
+        <pre>
+          {`
+app/api/profile/route.ts
+------------------------
+
+import { profileService } from '@/services/profile.service';
+
+export async function GET() {
+  const profile = await profileService.getCurrentUser();
+
+  return Response.json(profile);
+}
+
+export async function POST(request: Request) {
+  const body = await request.json();
+
+  const profile = await profileService.updateProfile(body);
+
+  return Response.json(profile);
+}
+`}
+        </pre>
+        <br />
+        <p>
+          <pre>
+            {`
+services/profile.service.ts
+---------------------------
+
+import { profileRepository } from '@/repositories/profile.repository';
+
+export const profileService = {
+  async getCurrentUser() {
+    const user = await profileRepository.findById(1);
+
+    return {
+      id: user.id,
+      name: user.name,
+      email: user.email,
+    };
+  },
+};
+`}
+          </pre>
+        </p>
+        <br />
+        <p>
+          <pre>
+            {`
+repositorires/profile.repository.ts
+-----------------------------------
+export const profileRepository = {
+  async findById(id: number) {
+    // prisma.user.findUnique(...)
+    // sql query
+    // mongodb query
+
+    return {
+      id,
+      name: 'John',
+      email: 'john@test.com',
+    };
+  },
+};
+`}
+          </pre>
+        </p>
       </NoteItem>
     </Note>
   );
