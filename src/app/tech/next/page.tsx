@@ -37,30 +37,41 @@ export default function Template() {
           компонентов
         </p>
         <br />
-        <p>cookies()</p>
-        <p>headers()</p>
+        <p>
+          cookies() - изпользуется в серверных компонентах, для получения куки,
+          технически ее можно вызывать и middleware и в route, но это излишне
+          так как в те файлы next в аргумент функции передает request из которго
+          можно достать как cookies так прочую информацию
+        </p>
+        <p>
+          headers() - по аналогии с cookies() используется только в серверных
+          компонентах для получения заголовков
+        </p>
         <p>params</p>
         <br />
         <p>
-          Cтандарт Web API <br /> общий для любой стороны, как для клиента так и
-          для сервера
-        </p>
-        Cтандарт Web API: <br />
-        Request <br />
-        Response <br />
-        Headers <br />
-        URL <br />
-        <p>
-          На клиенте конструкторы классов предоставляет сам браузер а на сервере
-          Node в globalThis
+          Web API <br />
+          Является общим для любой стороны, как для клиента так и для сервера и
+          в него входят стандраты запросов, ответов, url и др.:
         </p>
         <br />
+        Request - при помощи самого класса можно создать запрос new Request(url,{' '}
+        {`{method: post и тд}`}), это и делает под капотом fetch.
+        <br />
+        На сервере мы получаем экземпляр класса Request который содержит такие
+        поля как method, url, body и др. <br /> <br />
+        Response - создает http response клиенту стандартизированного вида:
+        <br />
+        <pre>
+          {` return Response.json( { error: 'Not found' }, { status: 404 } ); `}
+        </pre>
+        <br />
+        Headers - позваоляет задавать заголовки к запросу через
+        <br />
+        URL - формирует из строки объект c полями, pathname, searchParams <br />
         <p>
-          globalThis.Request <br />
-          globalThis.Response <br />
-          globalThis.Headers <br />
-          globalThis.URL <br />
-          globalThis.fetch <br />
+          На клиенте конструкторы классов предоставляет сам браузер а на сервере
+          Node в globalThis: globalThis.Response и прочие
         </p>
         <br />
         <pre>
@@ -226,6 +237,16 @@ export const profileRepository = {
 };
 `}
           </pre>
+        </p>
+        <p>
+          в route.ts обрабатываем входяшие запросы с клиента и отвечаем на них
+        </p>
+        <p>
+          в middleware.ts мы перехватываем запрос пока он не дошел до конкретных
+          страниц или route.ts для того чтобы проверить авторизаван ли
+          пользователь, имеен ли доступ и сразу редиректить его. <br />в
+          переменной config обозначаются конкретные rout-ы (endpoint-ы) по
+          которым нужно осуществлять перехват и проверку
         </p>
       </NoteItem>
     </Note>
