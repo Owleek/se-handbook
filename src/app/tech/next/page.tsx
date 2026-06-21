@@ -69,7 +69,28 @@ export default function Template() {
           Request - при помощи самого класса можно создать запрос new
           Request(url, {`{method: post и тд}`}), это и делает под капотом fetch.
         </p>
+        <p>params</p>
         <br />
+        <p>
+          Web API <br />
+          Является общим для любой стороны, как для клиента так и для сервера и
+          в него входят стандраты запросов, ответов, url и др.:
+        </p>
+        <br />
+        Request - при помощи самого класса можно создать запрос new Request(url,{' '}
+        {`{method: post и тд}`}), это и делает под капотом fetch.
+        <br />
+        На сервере мы получаем экземпляр класса Request который содержит такие
+        поля как method, url, body и др. <br /> <br />
+        Response - создает http response клиенту стандартизированного вида:
+        <br />
+        <pre>
+          {` return Response.json( { error: 'Not found' }, { status: 404 } ); `}
+        </pre>
+        <br />
+        Headers - позваоляет задавать заголовки к запросу через
+        <br />
+        URL - формирует из строки объект c полями, pathname, searchParams <br />
         <p>
           На сервере мы получаем экземпляр класса Request который содержит такие
           поля как method, url, body и др. <br /> <br />
