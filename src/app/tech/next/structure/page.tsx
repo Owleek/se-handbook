@@ -5,153 +5,7 @@ export default function Template() {
   return (
     <Note title='Structure'>
       <NoteItem>
-        <p>
-          cookies() - изпользуется в серверных компонентах, для получения куки,
-          технически ее можно вызывать и middleware и в route, но это излишне
-          так как в те файлы next в аргумент функции передает request из которго
-          можно достать как cookies так прочую информацию
-        </p>
-        <p>
-          headers() - по аналогии с cookies() используется только в серверных
-          компонентах для получения заголовков
-        </p>
-        <p>
-          params - это объект в котором будет содержатся информаци о
-          динамическом роуте, его нужно вызывать в компонентах. <br />
-          app/users/[id]/page.tsx. тогда в params будет лежать ключ id со
-          значением. <br />
-          так же как и обычные роуты, динамические роуты тоже обслуживаются
-          сервером: <br />
-          app/api/users/[id]/route.ts <br />
-          если динамический роут может быть составным, тогда это может выглядеть
-          так: app/users/[...slug]/page.tsx <br />
-          <pre>
-            / docs / next / routing / dynamic-routes
-            {`
-            slug: [
-              'next',
-              'routing',
-              'dynamic-routes'
-            ]`}
-          </pre>
-          <br />
-          <p>
-            При опциональный query в url, их можно считывать из searchParams,
-            они будут в пропсах на уровне с search:
-          </p>
-          <p>/products?page=2&sort=price</p>
-          <pre>{`const { page, sort } = await searchParams;`}</pre>
-          <br />
-          <p>
-            searchParams есть только в page, в rounte handler нужно получать
-            иначе:
-          </p>
-          <pre>
-            {`
-              const url = new URL(request.url);
-              const page = url.searchParams.get('page');
-            `}
-          </pre>
-          <br />
-          <p>Один параметр в динамическом API:</p>
-          <p>app/api/users/[id]/route.ts</p>
-          <pre>
-            {`
-              export async function GET(
-              ...
-              const { id } = await params;
-              ...
-               return Response.json({userId: id});
-            `}
-          </pre>
-          <br />
-          <p>
-            Несколько параметров: <br />
-            app/users/[userId]/orders/[orderId]/page.tsx <br />
-            /users/15/orders/999 <br />
-            <pre>
-              params:
-              {`
-                {
-                  userId: '15',
-                  orderId: '999'
-                }
-              `}
-            </pre>
-          </p>
-          <br />
-          <p>slug параметры :</p>
-          <p>app/users/[...slug]/page.tsx</p>
-          <p>/ docs / next / routing / dynamic-routes</p>
-          <p>
-            <pre>
-              {`
-            export async function GET(
-            ..
-            const { slug } = await params;
-            ...
-            return Response.json({slug});
-            `}
-            </pre>
-            <p>
-              В API их можно было бы достать из request.url, но парсить долго,
-              проще достать из await params
-            </p>
-          </p>
-        </p>
-        <br />
-        <p>
-          Web API <br />
-          Является общим для любой стороны, как для клиента так и для сервера и
-          в него входят стандраты запросов, ответов, url и др.:
-        </p>
-        <br />
-        <p>
-          Request - при помощи самого класса можно создать запрос new
-          Request(url, {`{method: post и тд}`}), это и делает под капотом fetch.
-        </p>
-        <p>params</p>
-        <br />
-        <p>
-          Web API <br />
-          Является общим для любой стороны, как для клиента так и для сервера и
-          в него входят стандраты запросов, ответов, url и др.:
-        </p>
-        <br />
-        Request - при помощи самого класса можно создать запрос new Request(url,{' '}
-        {`{method: post и тд}`}), это и делает под капотом fetch.
-        <br />
-        На сервере мы получаем экземпляр класса Request который содержит такие
-        поля как method, url, body и др. <br /> <br />
-        Response - создает http response клиенту стандартизированного вида:
-        <br />
-        <pre>
-          {` return Response.json( { error: 'Not found' }, { status: 404 } ); `}
-        </pre>
-        <br />
-        Headers - позваоляет задавать заголовки к запросу через
-        <br />
-        URL - формирует из строки объект c полями, pathname, searchParams <br />
-        <p>
-          На сервере мы получаем экземпляр класса Request который содержит такие
-          поля как method, url, body и др. <br /> <br />
-          Response - создает http response клиенту стандартизированного вида:
-        </p>
-        <br />
-        <pre>
-          {` return Response.json( { error: 'Not found' }, { status: 404 } ); `}
-        </pre>
-        <br />
-        <p>Headers - позваоляет задавать заголовки к запросу через</p>
-        <br />
-        <p>
-          URL - формирует из строки объект c полями, pathname, searchParams{' '}
-          <br />
-        </p>
-        <p>
-          На клиенте конструкторы классов предоставляет сам браузер а на сервере
-          Node в globalThis: globalThis.Response и прочие
-        </p>
+        <p>Пример структуры next приложения:</p>
         <br />
         <pre>
           {`
@@ -250,108 +104,122 @@ export default function Template() {
         `}
         </pre>
         <br />
+        <p>
+          в middleware.ts &mdash; мы перехватываем запрос пока он не дошел до
+          конкретных страниц или route.ts для того чтобы проверить авторизаван
+          ли пользователь, имеет ли доступ и сразу редиректить его на страницу
+          логина.
+        </p>
+        <p>
+          в переменной config обозначаются конкретные rout-ы (endpoint-ы) по
+          которым нужно осуществлять перехват(проверку), потому что проверять
+          все, слишком затратно по ресурсам
+        </p>
         <pre>
           {`
-app/api/profile/route.ts
-------------------------
+            export function middleware(request: NextRequest) {
+              const accessToken =
+                request.cookies.get('access_token');
 
-import { profileService } from '@/services/profile.service';
+              if (!accessToken) {
+                return NextResponse.redirect(
+                  new URL('/login', request.url)
+                );
+              }
 
-export async function GET() {
-  const profile = await profileService.getCurrentUser();
+              return NextResponse.next();
+            }
 
-  return Response.json(profile);
-}
-
-export async function POST(request: Request) {
-  const body = await request.json();
-
-  const profile = await profileService.updateProfile(body);
-
-  return Response.json(profile);
-}
-`}
+            export const config = {
+              matcher: ['/dashboard/:path*'],
+            };
+          `}
         </pre>
         <br />
         <p>
-          <pre>
-            {`
-services/profile.service.ts
----------------------------
-
-import { profileRepository } from '@/repositories/profile.repository';
-
-export const profileService = {
-  async getCurrentUser() {
-    const user = await profileRepository.findById(1);
-
-    return {
-      id: user.id,
-      name: user.name,
-      email: user.email,
-    };
-  },
-};
-`}
-          </pre>
+          в route.ts обрабатываем входящие запросы с клиента и отвечаем на них
+          просто вызывая нужный сервис не вдумываясь о том как он реализован
         </p>
+        <pre>
+          {`
+            import { profileService } from '@/services/profile.service';
+
+            export async function GET() {
+              const profile = await profileService.getCurrentUser();
+
+              return Response.json(profile);
+            }
+
+            export async function POST(request: Request) {
+              const body = await request.json();
+
+              const profile = await profileService.updateProfile(body);
+
+              return Response.json(profile);
+            }
+          `}
+        </pre>
+        <br />
+        <br />
+        <p>profile.service.ts отвечает за бизнес-логику.</p>
+        <p>
+          Он знает: <br />
+          правила бизнеса <br />
+          проверки <br />
+          права доступа <br />
+          оркестрацию нескольких репозиториев <br />
+        </p>
+        <pre>
+          {`
+              class ProfileService {
+                constructor(
+                  private profileRepository: ProfileRepository
+                ) {}
+
+                async updateProfile(id: string, dto: UpdateProfileDto) {
+                  const profile = await this.profileRepository.findById(id);
+
+                  if (!profile) {
+                    throw new NotFoundException();
+                  }
+
+                  return this.profileRepository.update(id, dto);
+                }
+              }
+            `}
+        </pre>
         <br />
         <p>
-          <pre>
-            {`
-repositorires/profile.repository.ts
------------------------------------
-export const profileRepository = {
-  async findById(id: number) {
-    // prisma.user.findUnique(...)
-    // sql query
-    // mongodb query
+          profile.repository.ts отвечает только за работу с источником данных.
+        </p>
+        <p>
+          Он знает: <br />
+          SQL <br />
+          Prisma <br />
+          TypeORM <br />
+          MongoDB <br />
+          внешний API <br />
+          <br />
+          Но не знает бизнес-логику.
+        </p>
+        <pre>
+          {`
+            export const profileRepository = {
+              async findById(id: number) {
+                // prisma.user.findUnique(...)
+                // sql query
+                // mongodb query
 
-    return {
-      id,
-      name: 'John',
-      email: 'john@test.com',
-    };
-  },
-};
-`}
-          </pre>
-        </p>
-        <p>
-          в route.ts обрабатываем входяшие запросы с клиента и отвечаем на них
-        </p>
+                return {
+                  id,
+                  name: 'John',
+                  email: 'john@test.com',
+                };
+              },
+            };
+          `}
+        </pre>
         <br />
-        <p>
-          в middleware.ts мы перехватываем запрос пока он не дошел до конкретных
-          страниц или route.ts для того чтобы проверить авторизаван ли
-          пользователь, имеен ли доступ и сразу редиректить его. <br />в
-          переменной config обозначаются конкретные rout-ы (endpoint-ы) по
-          которым нужно осуществлять перехват и проверку
-        </p>
-        <br />
-        <p>
-          Начиная с версии next 14, стали доступны <b>server actions</b>
-        </p>
-        <p>
-          Cмысл их в том что, на сервере при билде для серверного экшена
-          создается прокси функция, которая содержит в себе идентификатор
-          серверной функции. <br />
-          При вызове этой прокси-функции, она получает аргумент если он
-          предусмотрен на серевной функции и шлет http запрос с идентификтором
-          этой функции и ее аргументами, на сервере next обрабатывает запрос,
-          находит эту функцию по идентификатору, передает ее аргументы и если
-          она что то возвращает после выполнения, вовращет это ответом на запрос
-        </p>
-        <p>
-          По пусти дела, server actions это простая RPC (remote procedure call)
-        </p>
-        <p>
-          Этот экшн может быть как сомостоятельной функцией которая выполняет
-          мутации в базе данных, так и тонкой оберткой над другим сложным API,
-          например graphql, она может быть самостоятельной если выполняемая
-          операция не требует наличие HTTP API для сторонних клиентов, например
-          мобильного приложениея или других фронтендов
-        </p>
       </NoteItem>
     </Note>
   );
