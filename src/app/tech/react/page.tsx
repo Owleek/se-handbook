@@ -6,6 +6,9 @@ export default function Javascript() {
     <TileGrid>
       <TileLink href='/tech/react/render'>Render & Reconciliation</TileLink>
       <TileLink href='/tech/react/usecases'>Use cases</TileLink>
+      <TileLink href='/tech/react/terms'>Terms</TileLink>
+      <TileLink href='/tech/react/cleancode'>Clean Code</TileLink>
+      <TileLink href='/tech/react/hooks'>Hooks</TileLink>
     </TileGrid>
   );
 }

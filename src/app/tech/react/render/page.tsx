@@ -1,11 +1,6 @@
-'use client';
-
-import React, { useEffect } from 'react';
 import { Note, NoteItem } from '@/shared/ui/Note';
 
 export default function Template() {
-  useEffect(() => {}, []);
-
   return (
     <Note title='Render & Reconciliation'>
       <NoteItem>
@@ -149,6 +144,10 @@ export default function Template() {
           задачах а обработ ввод пользователя
         </p>
         <br />
+        <p>
+          React при сравнивнении state, у примитивов сравнивает значения, а у
+          ссылочных типов ссылки, если они одинаковые - ререндера не будет.
+        </p>
         <br />
         <p>
           Если приложение или отдельный компонент обернут в
