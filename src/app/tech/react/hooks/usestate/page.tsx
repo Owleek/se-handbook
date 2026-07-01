@@ -2,8 +2,9 @@ import { Note, NoteItem } from '@/shared/ui/Note';
 
 export default function Template() {
   return (
-    <Note title='useState'>
+    <Note title='useState & useReducer'>
       <NoteItem>
+        <p>-- useState --</p>
         <p>
           <b>Lazy init</b>
         </p>
@@ -59,6 +60,73 @@ export default function Template() {
           по ссылке, если ссылка или значение не изменилась, перерендера не
           произойдет!
         </p>
+        <br />
+        <br />
+        <p>-- useReducer --</p>
+        <p>
+          useReducer - это альтернатива useState для локального множественного
+          состояния, локальный микро-redux.
+        </p>
+        <p>
+          Используется для улучшение качества кода, чтобы не плодить множество
+          useState в одном компоненте
+        </p>
+        <p>Для этого state объединяют и управляют им функцией dispatch.</p>
+        <br />
+        <p>
+          reducer должен быть чистой функцией без побочных эффектов которая явно
+          возвращает state, поскольку react рассчитывает именно на это и ни на
+          что другое
+        </p>
+        <br />
+        <p>
+          Под капотом useReducer работает так же как useState (включая
+          Batching), просто внешне изменился формат записи состояния.
+        </p>
+        <pre>
+          {`
+За функцией-->
+const initialState = {
+  loading: false,
+  user: null,
+  error: null,
+  isAdmin: false,
+  ....
+}
+
+const reducer = (currentState, action) {
+    switch(action.type) {
+      case "load":
+        return {
+          ...currentState,
+          loading: true,
+          error: null,
+        };
+      case "setUser": {
+          ...currentState,
+          loading: false,
+          error: null,
+          user: action.payload
+      }
+      ...
+      default: 
+        return currentState
+    }
+}
+<--За функцией
+
+Внутри функции-->
+const [state, dispatch] = useReducer(reducer, initialState)
+
+const someEvent = (isAdmin) => {
+    dispatch({
+       type: "toggleAdmin"
+       payload: !!isAdmin
+    })
+}
+<--Внутри функции
+           `}
+        </pre>
       </NoteItem>
     </Note>
   );
