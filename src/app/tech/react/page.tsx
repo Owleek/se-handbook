@@ -9,6 +9,7 @@ export default function Javascript() {
       <TileLink href='/tech/react/terms'>Terms</TileLink>
       <TileLink href='/tech/react/cleancode'>Clean Code</TileLink>
       <TileLink href='/tech/react/hooks'>Hooks</TileLink>
+      <TileLink href='/tech/react/context'>Context</TileLink>
     </TileGrid>
   );
 }
