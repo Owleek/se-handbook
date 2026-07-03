@@ -38,7 +38,8 @@ export default function Template() {
             имененения ref, а именно по какой либо другой причине, поэтому ref
             никогда не кладут в зависимости useEffect
           </p>
-          <pre></pre>
+          <br />
+          <p>Раньше для создания реф использовалась функция createRef()</p>
         </NoteItem>
       </Note>
       <Note title='useCallback'>
