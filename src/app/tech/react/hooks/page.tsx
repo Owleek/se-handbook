@@ -10,8 +10,11 @@ export default function Javascript() {
       <TileLink href='/tech/react/hooks/useeffect'>
         useEffect & useLayoutEffect
       </TileLink>
-      <TileLink href='/tech/react/hooks//memohooks'>
+      <TileLink href='/tech/react/hooks/memohooks'>
         useRef, useCallback, useMemo, HOC_React.memo
+      </TileLink>
+      <TileLink href='/tech/react/hooks/ref'>
+        forwardRef & useImperativeHandle
       </TileLink>
     </TileGrid>
   );
