@@ -5,19 +5,19 @@ export default function Javascript() {
   return (
     <TileGrid>
       <TileLink href='/tech/react/hooks/usestate'>
-        useState & useReducer
+        useState <br /> useReducer
       </TileLink>
       <TileLink href='/tech/react/hooks/useeffect'>
-        useEffect & useLayoutEffect
+        useEffect <br /> useLayoutEffect
       </TileLink>
       <TileLink href='/tech/react/hooks/memohooks'>
-        useRef, useCallback, useMemo, HOC_React.memo
+        useRef <br /> useCallback <br /> useMemo <br /> React.memo
       </TileLink>
       <TileLink href='/tech/react/hooks/ref'>
-        forwardRef & useImperativeHandle
+        forwardRef <br /> useImperativeHandle
       </TileLink>
       <TileLink href='/tech/react/hooks/usetransition'>
-        R18 - useTransition & useDefferedValue
+        React 18 <br /> useTransition <br /> useDefferedValue
       </TileLink>
     </TileGrid>
   );
