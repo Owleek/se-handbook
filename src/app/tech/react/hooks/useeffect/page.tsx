@@ -1,22 +1,22 @@
+import React from 'react';
 import { Note, NoteItem } from '@/shared/ui/Note';
 
 export default function Template() {
   return (
-    <Note title='useEffect & useLayoutEffect'>
-      <NoteItem>
-        <p>-- useEffect --</p>
-        <p>
-          Главной задачей useEffect является синхронизаци React с внешним миром
-          (Запросы, Взаимодействие с DOM API)
-        </p>
-        <br />
-        <p>
-          Паттерн работы: useEffect вызывается после полной отрисовки в dom, а
-          cleanup старого эффекта перед вызовом нового.
-        </p>
-        <p>{`React render => Commit => Paint => cleanup(old-useEffect) => useEffect`}</p>
-        <br />
-        <div>
+    <React.Fragment>
+      <Note title='useEffect'>
+        <NoteItem>
+          <p>
+            Главной задачей useEffect является синхронизаци React с внешним
+            миром (Запросы, Взаимодействие с DOM API)
+          </p>
+          <br />
+          <p>
+            Паттерн работы: useEffect вызывается после полной отрисовки в dom, а
+            cleanup старого эффекта перед вызовом нового.
+          </p>
+          <p>{`React render => Commit => Paint => cleanup(old-useEffect) => useEffect`}</p>
+          <br />
           <p>
             1. Массив зависимостей не передан: - вызов useEffect будет каждый
             рендер, и cleanup этого эффекта перед вызовом следующего.
@@ -31,9 +31,7 @@ export default function Template() {
             `}
           </pre>
           <p>{`React render => Commit => Paint => cleanup(useEffect#1) => useEffect#2()`}</p>
-        </div>
-        <br />
-        <div>
+          <br />
           <p>
             2. Передан пустой массив зависимостей: - вызов useEffect будет
             только при маунте компонента и его cleanup при анмаунте.
@@ -44,9 +42,7 @@ export default function Template() {
             `}
           </pre>
           <p>{`React render => Commit => Paint => useEffect() => .... => destroy => Commit => Paint => cleanup(useEffect)`}</p>
-        </div>
-        <br />
-        <div>
+          <br />
           <p>
             3. Переданы зависимости эффекта: - вызов useEffect будет только при
             изменении одной из зависимостей
@@ -59,11 +55,10 @@ export default function Template() {
           <p>{`React render => Commit => Paint => cleanup(useEffect#1) => useEffect#2()`}</p>
           <br />
           <p>React удаляет старый эффект за ненадобностью, и вызывает новый.</p>
-        </div>
-        <br />
-        <br />
-        <div>
-          <p>-- useLayoutEffect --</p>
+        </NoteItem>
+      </Note>
+      <Note title='useLayoutEffect'>
+        <NoteItem>
           <p>
             правила работы useLayoutEffect и useEffect одинаковые. <br />
             Отличается только момент их выполнения: <br />
@@ -87,8 +82,8 @@ export default function Template() {
             этап рендеринга и не даем показать неправильный кадр, а запускаем
             логику пересчета.
           </p>
-        </div>
-      </NoteItem>
-    </Note>
+        </NoteItem>
+      </Note>
+    </React.Fragment>
   );
 }
