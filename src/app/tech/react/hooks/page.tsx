@@ -19,6 +19,9 @@ export default function Javascript() {
       <TileLink href='/tech/react/hooks/usetransition'>
         React 18 <br /> useTransition <br /> useDefferedValue
       </TileLink>
+      <TileLink href='/tech/react/hooks/usetransition'>
+        R18 - useTransition & useDefferedValue
+      </TileLink>
     </TileGrid>
   );
 }
