@@ -17,10 +17,7 @@ export default function Javascript() {
         forwardRef <br /> useImperativeHandle
       </TileLink>
       <TileLink href='/tech/react/hooks/usetransition'>
-        React 18 <br /> useTransition <br /> useDefferedValue
-      </TileLink>
-      <TileLink href='/tech/react/hooks/usetransition'>
-        R18 - useTransition & useDefferedValue
+        [R18] <br /> useTransition <br /> useDefferedValue
       </TileLink>
       <TileLink href='/tech/react/hooks/other'>Other</TileLink>
     </TileGrid>
