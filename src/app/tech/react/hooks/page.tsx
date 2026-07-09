@@ -20,6 +20,12 @@ export default function Javascript() {
         [R18] <br /> useTransition <br /> useDefferedValue
       </TileLink>
       <TileLink href='/tech/react/hooks/other'>Other</TileLink>
+      <TileLink href='/tech/react/hooks/r19'>
+        [R18] use <br />
+        useOptimistic <br />
+        useFromStatus <br />
+        useActionState
+      </TileLink>
     </TileGrid>
   );
 }
