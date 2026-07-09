@@ -36,17 +36,40 @@ OwnHook: "just simple string", "sasha st. petersburg"
       </Note>
       <Note title='[R18] useId'>
         <NoteItem>
-          <div></div>
+          <p>
+            useId - генерирует уникальный стабильный id для связывания label и
+            штзге, aria-* атрибутов
+          </p>
+          <br />
+          <p>
+            Не подходит для key или данных поскольку id берется из fiber дерева,
+            и может меняться
+          </p>
+          <br />
+          <p>
+            Сделали для того чтобы не было миссгидрации когда использовали
+            всякие math.random
+          </p>
         </NoteItem>
       </Note>
       <Note title='[R18] useSyncExternalStore'>
         <NoteItem>
-          <div></div>
+          <p>
+            Если есть внешний store, который живет вне React, то React сам
+            гарантирует, что во время рендера будет использована консистентная
+            версия данных. Если store изменился в неподходящий момент, React
+            корректно перерендерит компонент.
+          </p>
+          <p>Zustand, Mobx</p>
         </NoteItem>
       </Note>
       <Note title='[R18] useInsertionEffects'>
         <NoteItem>
-          <div></div>
+          <p>
+            Позволяет вставить CSS в DOM до выполнения обычных эффектов и до
+            layout.
+          </p>
+          <p>CSS-in-JS библиотеки (Emotion, styled-components и т.п.)</p>
         </NoteItem>
       </Note>
     </React.Fragment>
