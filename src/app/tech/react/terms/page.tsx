@@ -135,6 +135,27 @@ export default function Template() {
           нужно, а не грузить весь банлд с различными страницами которые
           пользователь возможно никогда не посетит
         </p>
+        <br />
+        <br />
+        <p>Ключевые отличия версий React</p>
+        <p>Что что до 16.8 - классовые компоненты</p>
+        <p>16-16.8 (Fiber, Error Boundaries, Fragments, Portals) - Hooks</p>
+        <p>
+          useState, useEffect, useLayoutEffect, useContext, useReducer,
+          useCallback, useMemo, useRef, useImperativeHandle, useDebugValue
+        </p>
+        <br />
+        <p>17. Создание компонента без импорта React, подготовка к 18 версии</p>
+        <p>
+          18. Concurrent Rendering, Automatic Batching, Transition API,
+          createRoot
+        </p>
+        <p>
+          useId, useTransition, useDeferredValue, useSyncExternalStore,
+          useInsertionEffect
+        </p>
+        <p>19. Server components, server actions, preload</p>
+        <p>useOptimistic, useActionState, useFormStatus, useFormState</p>
       </NoteItem>
     </Note>
   );
