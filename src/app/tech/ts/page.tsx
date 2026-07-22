@@ -24,6 +24,10 @@ export default function Template() {
 4 - 9, 10
 5 - 4
 6 - 7
+7 - [1 - 10]
+8 - [1 - 10]
+9 - [1 - 10]
+
         `}
       </pre>
     </TileGrid>
