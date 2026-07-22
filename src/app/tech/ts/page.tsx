@@ -7,7 +7,7 @@ export default function Template() {
       {/* <TileLink href='/tech/ts/draft'>Draft</TileLink> */}
       <pre>
         {`
-1 Система типов (any, unknown, never, void, null, undefined, literal types)
+1 Система типов (any, unknown, never, void, null, undefined, literal types) 
 2 Union и Intersection Types
 3 Interfaces vs Type Alias
 4 Generics
@@ -17,6 +17,13 @@ export default function Template() {
 8 keyof, typeof, Indexed Access Types
 9 Mapped Types
 10 Conditional Types + infer
+
+1 - 1, 2, 3
+2 - 6
+3 - 5, 8
+4 - 9, 10
+5 - 4
+6 - 7
         `}
       </pre>
     </TileGrid>
