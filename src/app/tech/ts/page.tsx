@@ -42,11 +42,13 @@ export default function Template() {
       </p>
       <p>
         Аналогия для type это пересечение: secontype & firstType, по этому для
-        работы с наследованием удобнее использовать interface
+        работы с наследованием удобнее использовать interface, так же можно
+        добавить и то что оф док сообщает что extends под капототм работает
+        быстрее чем пересечение
       </p>
       <p>
         Единственное чего не умеет type - это расширять тот же тип повторной
-        декларацией (возникнет ошибка), а interface может:{' '}
+        декларацией (возникнет ошибка), а interface может:
       </p>
       <pre>
         {`
@@ -158,6 +160,74 @@ function doSomething<Type>(param: Type): Type {
 
 const x: number = doSomething<number>(5) 
 const y: string = doSomething<string>('string')
+`}
+      </pre>
+      <br />
+      <br />
+      <p>
+        keyof - этот оператор работает с типами (интерфейсами), он получает
+        список в литеральном виде ключей интерфейса
+      </p>
+      <p>пример:</p>
+      <pre>
+        {`
+interface User {
+    id: number
+    name: string
+    age: number
+}
+
+type UserKeys = keyof User = "id" | "name" | "age"
+`}
+      </pre>
+      <br />
+      <br />
+      <p>
+        typeof - создает тип(интерфейс) значения(примитивное либо ссылочное)
+      </p>
+      <pre>
+        {`
+const user = {
+    id: 1,
+    name: "Alex"
+}
+
+type User = typeOf user = {id: number, name: string }
+но если user as const тогда тип будет жестко зафиксирован со значениями, и они станут read-only
+
+        `}
+      </pre>
+      <br />
+      <br />
+      <p>in в ts это как for ..of в js, перебирает значения</p>
+      <p>например:</p>
+      <pre>
+        {`
+
+разберем это на реальном примере:
+
+type ReadonlyType<T> = {
+    [K in keyof T]: T[K]
+}
+
+type One = {
+    name: 'Alice',
+    age: 18
+}
+
+type Two = keyof One = "name" | "age"
+
+type Three = {
+    [key in Two]: One[key]
+}
+
+в итоге
+
+type Three = {
+    name: 'Alice',
+    age: 18
+}
+
 `}
       </pre>
     </TileGrid>
