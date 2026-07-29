@@ -2,9 +2,13 @@ import { Note, NoteItem } from '@/shared/ui/Note';
 
 export default function Template() {
   return (
-    <Note title='Functions'>
+    <>
       <NoteItem>
-        <pre>{`
+        <p>Functions / Classes</p>
+      </NoteItem>
+      <Note title='Functions'>
+        <NoteItem>
+          <pre>{`
 
 interface ISum {
     (a: number, b: number): number
@@ -39,7 +43,13 @@ const mul: TMultiply = function (a, b) {
 }
 
 `}</pre>
-      </NoteItem>
-    </Note>
+        </NoteItem>
+      </Note>
+      <Note title='Classes'>
+        <NoteItem>
+          <p></p>
+        </NoteItem>
+      </Note>
+    </>
   );
 }
