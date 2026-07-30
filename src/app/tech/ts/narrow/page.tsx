@@ -3,9 +3,6 @@ import { Note, NoteItem } from '@/shared/ui/Note';
 export default function Template() {
   return (
     <>
-      <NoteItem>
-        <p>Narrowing / Typeguards</p>
-      </NoteItem>
       <Note title='Narrowing'>
         <NoteItem>
           <p>
