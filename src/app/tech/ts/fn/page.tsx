@@ -3,9 +3,6 @@ import { Note, NoteItem } from '@/shared/ui/Note';
 export default function Template() {
   return (
     <>
-      <NoteItem>
-        <p>Functions / Classes</p>
-      </NoteItem>
       <Note title='Functions'>
         <NoteItem>
           <pre>{`
@@ -43,11 +40,28 @@ const mul: TMultiply = function (a, b) {
 }
 
 `}</pre>
+          <p>Перегрузка функций:</p>
+          <p>......</p>
         </NoteItem>
       </Note>
       <Note title='Classes'>
         <NoteItem>
           <p></p>
+        </NoteItem>
+      </Note>
+      <Note title='Objects'>
+        <NoteItem>
+          <p>Собственные типы в полях:</p>
+          <pre>
+            {`
+type TUser = {
+    [proizvolniykey: string]: number 
+}
+const user: TUser = {
+    chototo: 2
+}
+        `}
+          </pre>
         </NoteItem>
       </Note>
     </>
