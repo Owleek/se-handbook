@@ -92,6 +92,7 @@ const data2: ApiResponse<TData2, TAdditinal2> = {
    }
 }
 
+
 пример с функцией:
 const doSomething = function<T>(arg: T): T[] {
   return [arg]
@@ -124,11 +125,17 @@ class Cart<T> {
 
 И самое главное:
 
-в Generics могут быть услоные расширения
+в Generics могут быть услоные расширения:
 
 const doSomething = function<T extends User ? Case1Type : Case2Type >(arg: T): (Case1Type | Case2Type) {
   ....
 }
+
+// В дженерик можно передать тип по умолчанию:
+const doSomething = function<T = string>(arg: T): T[] {
+  return [arg]
+}
+
           `}</pre>
         </NoteItem>
       </Note>
