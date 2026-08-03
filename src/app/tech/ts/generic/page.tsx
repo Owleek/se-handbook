@@ -137,6 +137,75 @@ const doSomething = function<T = string>(arg: T): T[] {
 }
 
           `}</pre>
+
+          <p>Type assertion (явное преобразование), as, satisfies</p>
+        </NoteItem>
+      </Note>
+      <Note title='Явные преобразования / Type assertion'>
+        <NoteItem>
+          <p>Type assertion позволяет явно привести значение к нужному типу</p>
+          <p>
+            Главный кейс когда его рекомендуется использовать - это приведение
+            данных от сервера к описанному интерфейсу
+          </p>
+          <pre>
+            {`
+interface IPerson {
+    id: number
+    name: string
+    isAdmin: boolean
+}
+
+// ts вообще не знает тип когда мы из строки воссаздаем объект - он any
+async function get_data<T>(): Promise<T> {
+    const fetch_data = await fetch('...')
+    const data = await fetch_data.json()
+    return data as T
+}
+
+get_data<IPerson>().then(data => {
+    //data.
+        //id 
+        //name 
+        //isAdmin
+             
+})
+
+// 1
+const data1 = {
+    id: 12,
+    name: 'Pavel',
+    isAdmin: false
+} as IPerson
+
+//2 лучше не использовать чтобы не конфликтовать с jsx
+const data2 = <IPerson>{
+    id: 12,
+    name: 'Pavel',
+    asdads: 'asda',
+    isAdmin: false    
+}
+
+// В этих случаях data явно приводится к типу
+// Однако есть способ просто проверить объект
+// на соответствие без приведения его к типу
+
+const data3 = {
+    id: 12,
+    name: 'Pavel',
+    isAdmin: true 
+} satisfies IPerson
+
+// assertion не позводит явно привести явную ерунду
+const n: string = 2 as string
+// но и это можно обойти
+const m: string = 2 as unknown as string
+
+// assertion можно использовать только при получении данных с сервера
+// в каких то dev конфигах сборщика, тестах
+// в остальных запрещается поскольку это почти тот же any
+`}
+          </pre>
         </NoteItem>
       </Note>
     </>
