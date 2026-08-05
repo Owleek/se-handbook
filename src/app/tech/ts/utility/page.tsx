@@ -85,12 +85,96 @@ T[K] берет тип ключа
       </Note>
       <Note title='Required'>
         <NoteItem>
-          <p></p>
+          <p>
+            Required рротивоположность Partial, делает все поля обязательными
+          </p>
+          <p>Используется заметно реже</p>
+          <pre>
+            {`
+interface User {
+    name?: string
+    age?: number
+}
+
+type T = Required<User>
+
+type T = {
+    name: string
+    age: number
+}
+
+Внутри устроен так:
+
+type Required<T> = {
+    [K in keyof T]-?: T[K]
+}
+
+'-' отменяет '?'
+`}
+          </pre>
+          <p>Точно так же, как Partial, работает только на первом уровне.</p>
         </NoteItem>
       </Note>
-      <Note title='Pick'>
+      <Note title='Pick<T, K>'>
         <NoteItem>
-          <p></p>
+          <p>Берет только указанные свойства из существующего типа</p>
+          <p>1. Используется в DTO для API (повсеместно)</p>
+          <pre>
+            {`
+
+interface User {
+    id: number
+    name: string
+    email: string
+    password: string
+    createdAt: Date
+    updatedAt: Date
+}
+
+нам нужны только id, name, email
+
+type UserProfile = Pick<User, "id" | "name" | "email">
+
+{
+    id: number
+    name: string
+    email: string
+}
+
+
+`}
+          </pre>
+          <br />
+          <p>2. Props компонентов</p>
+          <pre>
+            {`
+interface ButtonProps {
+    text: string
+    disabled: boolean
+    loading: boolean
+    color: string
+    size: string
+}
+
+компоненту нужен только text, disabled
+
+type SmallButtonProps = Pick<
+    ButtonProps,
+    "text" | "disabled"
+>
+
+
+Внутри выглядит:
+
+type Pick<T, K extends keyof T> = {
+    [P in K]: T[P]
+}
+
+K extends keyof T - ограничение которое говорит что может содержать только существующие ключи объекта
+
+[P in K] - перебираем ключи которые передал пользователь
+  `}
+          </pre>
         </NoteItem>
       </Note>
       <Note title='Omit'>
