@@ -173,26 +173,114 @@ type Pick<T, K extends keyof T> = {
 K extends keyof T - ограничение которое говорит что может содержать только существующие ключи объекта
 
 [P in K] - перебираем ключи которые передал пользователь
+
+При Pick<User, never> - будет {} потому что нечего выбирать
   `}
           </pre>
         </NoteItem>
       </Note>
-      <Note title='Omit'>
+      <Note title='Exclude<T, U>'>
         <NoteItem>
-          <p></p>
+          <p>
+            Удаляет из union-типа все элементы, которые входят в другой union.
+          </p>
+          <p>
+            Exclude работает только с union-типами.!!! <br />
+            Он не работает с объектами.
+          </p>
+          <pre>
+            {`
+
+Exclude<Union, WhatToRemove>
+
+type Status =
+    | "loading"
+    | "success"
+    | "error"
+
+type SafeStatus =
+    Exclude<Status, "error">
+
+type SafeStatus =
+    | "loading"
+    | "success"
+
+
+
+Внутренняя реализация:
+
+type Exclude<T, U> =
+    T extends U
+        ? never
+        : T
+`}
+          </pre>
         </NoteItem>
       </Note>
-      <Note title='Record'>
+      <Note title='Omit<T, K>'>
         <NoteItem>
-          <p></p>
+          <p>Создает новый тип, исключая указанные свойства.</p>
+          <pre>
+            {`
+type PublicUser = Omit<User, "password" | "email">
+
+Omit<Type, Keys>
+
+останутся:
+
+id: number
+name: string
+createdAt: Date
+updatedAt: Date
+
+Внутренняя реализация:
+
+type Omit<T, K extends keyof any> = Pick<T, Exclude<keyof T, K>>
+`}
+          </pre>
+        </NoteItem>
+      </Note>
+      <Note title='Record<K, V>'>
+        <NoteItem>
+          <p>
+            Создает новый объектный тип по набору ключей и одному типу значений.
+          </p>
+          <pre>
+            {`
+
+Record<Keys, Value>
+
+type Role = "admin" | "user" | "guest";
+
+type Permissions = Record<Role, string[]>;
+
+получаем:
+
+{
+    admin: string[]
+    user: string[]
+    guest: string[]
+}
+
+
+type Language = "ru" | "en" | "zh";
+
+const translations: Record<Language, string> = {
+    ru: "Привет",
+    en: "Hello",
+    zh: "你好"
+}
+
+Внутренняяя реализация:
+
+type Record<K extends keyof any, T> = {
+    [P in K]: T
+}
+`}
+          </pre>
         </NoteItem>
       </Note>
       <Note title='Readonly'>
-        <NoteItem>
-          <p></p>
-        </NoteItem>
-      </Note>
-      <Note title='Exclude'>
         <NoteItem>
           <p></p>
         </NoteItem>
