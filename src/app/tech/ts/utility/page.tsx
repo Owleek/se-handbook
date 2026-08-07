@@ -115,6 +115,54 @@ type Required<T> = {
           <p>Точно так же, как Partial, работает только на первом уровне.</p>
         </NoteItem>
       </Note>
+      <Note title='Readonly<T>'>
+        <NoteItem>
+          <p>Делает все свойства объекта доступными только для чтения.</p>
+          <pre>
+            {`
+Readonly<Type>
+
+Примеры:
+1.
+const COLORS = {
+    primary: "#00f",
+    danger: "#f00"
+}
+Readonly<typeof COLORS>
+
+
+2.
+interface User {
+    id: number
+    name: string
+}
+type T = Readonly<User>
+
+type T = {
+    readonly id: number
+    readonly name: string
+}
+
+Внутри устроен след образом:
+
+type Readonly<T> = {
+    readonly [K in keyof T]: T[K]
+}
+
+
+! Как и Partial, Readonly работает только поверхностно.
+
+
+// Что бы отменить readonly можно использовать "-":
+
+type Mutable<T> = {
+    -readonly [K in keyof T]: T[K]
+}
+
+`}
+          </pre>
+        </NoteItem>
+      </Note>
       <Note title='Pick<T, K>'>
         <NoteItem>
           <p>Берет только указанные свойства из существующего типа</p>
@@ -412,27 +460,128 @@ K extends keyof any значит что ключами могут быть то�
           </pre>
         </NoteItem>
       </Note>
-      <Note title='Readonly'>
+      <Note title='ReturnType<T>'>
+        <NoteItem>
+          <p>Получает тип, который возвращает функция.</p>
+          <p>ReturnType работает не с объектами, а с типами функций.</p>
+          <p>ReturnType ожидает тип функции, а не саму функцию.</p>
+          <pre>
+            {`
+ReturnType<typeof someFunction>
+
+Допустим имеем внешнюю стороннюю функцию:
+
+function createUser() {
+    return {
+        id: 1,
+        name: "Alex"
+    }
+}
+
+Можно руками описать возвращаемое значение:
+
+type User = {
+    id: number
+    name: string
+}
+
+Но если вскоре издатель функции изменит возвращаемоме значение, код придется переписывать.
+
+По этому ReturnType решает эту проблему: 
+
+type User = ReturnType<typeof createUser>
+
+
+Внутреннее устройство:
+type ReturnType<T extends (...args: any[]) => any> = T extends (...args: any[]) => infer R ? R : never
+
+1. T extends (...args: any[]) => any // T должен быть функцией. Это входное условие, 
+// для того чтобы пользователь получил ошибку о том что передает не функцию, 
+// теоритически это входное условие можно не ставить, тогда пользователь получит infer а не ошибку
+2. (...args: any[]) => any  // любой тип функции
+3. infer R // ts вывводит этот тип и называет его R.
+
+Таким образом: T extends (...args: any[]) => infer R ? R : never
+
+// если шаблон соответствует функции, назовови возвращаемое значение R 
+// ? верни возвращаемое значение : верни infer
+
+
+
+// <T extends SomeType> - T должен быть SomeType или его подтипом.
+// T extends SomeType ? A : B - Если T совместим с SomeType, то верни A, иначе B.
+`}
+          </pre>
+        </NoteItem>
+      </Note>
+      <Note title='Parameters<T>'>
+        <NoteItem>
+          <p>Получает тип параметров функции в виде кортежа (tuple).</p>
+          <p>Он возвращает не объект и не union, а tuple.</p>
+          <pre>
+            {`
+Parameters<typeof someFunction>
+
+Допустим есть сторонняя функция:
+
+function sum(
+    a: number,
+    b: number
+) {
+    return a + b
+}
+
+можно руками описать возвращаемое значение:
+type Args = [
+    number,
+    number
+]
+
+но если автор изменит аргументы, то придется переписывать тип
+
+Эту проблему как раз решает Parameters
+
+
+tuple - потому что порядок агрументов имеет значение
+
+
+-- Внутренняя реализация:
+
+type Parameters<T extends (...args: any) => any> = T extends (...args: infer P) => any ? P : never
+
+
+
+!!! Пример того в каком случае понадобится узнать аргументы функции:
+
+// функция поиска и debounce
+
+function search(query: string, page: number) {
+    // ...
+}
+
+const debouncedSearch = debounce(search, 500);
+
+функции debounce нужно знать агрументы search чтобы debouncedSearch вызывалась с теми же параметрами что и search
+
+debouncedSearch(query: string, page: number)
+
+Тогда с Parameters это будет так:
+
+function debounce<T>(fn: T) {
+    return (...args: Parameters<T>) => {
+        ...
+    }
+}
+`}
+          </pre>
+        </NoteItem>
+      </Note>
+      <Note title='Awaited'>
         <NoteItem>
           <p></p>
         </NoteItem>
       </Note>
       <Note title='NonNullable'>
-        <NoteItem>
-          <p></p>
-        </NoteItem>
-      </Note>
-      <Note title='ReturnType'>
-        <NoteItem>
-          <p></p>
-        </NoteItem>
-      </Note>
-      <Note title='Parameters'>
-        <NoteItem>
-          <p></p>
-        </NoteItem>
-      </Note>
-      <Note title='Awaited'>
         <NoteItem>
           <p></p>
         </NoteItem>
