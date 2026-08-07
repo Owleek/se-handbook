@@ -86,7 +86,7 @@ T[K] берет тип ключа
       <Note title='Required'>
         <NoteItem>
           <p>
-            Required рротивоположность Partial, делает все поля обязательными
+            Required противоположность Partial, делает все поля обязательными
           </p>
           <p>Используется заметно реже</p>
           <pre>
@@ -205,14 +205,113 @@ type SafeStatus =
     | "loading"
     | "success"
 
-
-
 Внутренняя реализация:
 
 type Exclude<T, U> =
     T extends U
         ? never
         : T
+
+Допустим 
+type T = Exclude<"a" | "b" | "c", "b">
+
+
+TypeScript делает примерно следующее:
+
+"a" extends "b" ? нет, не трогаем
+"b" extends "b" ? да, возвращаем
+"С" extends "b" ? нет, не трогаем
+
+`}
+          </pre>
+        </NoteItem>
+      </Note>
+      <Note title='Extract<T, U>'>
+        <NoteItem>
+          <p>
+            Оставляет только те элементы union-типа, которые входят в другой
+            union.
+          </p>
+          <p>Является противоположностью Exclude</p>
+          <pre>
+            {`
+
+Extract<Union, WhatToKeep>
+
+type Status =
+    | "loading"
+    | "success"
+    | "error";
+
+type SuccessStatus =
+    Extract<
+        Status,
+        "success"
+    >
+
+type SuccessStatus = "success"
+
+!!! Важный прием с объектами
+
+
+type Shape =
+    | {
+        type: "circle";
+        radius: number;
+    }
+    | {
+        type: "square";
+        size: number;
+    }
+    | {
+        type: "triangle";
+        height: number;
+    };
+
+
+Допустим нам нужен круг:
+
+type Circle =
+    Extract<
+        Shape,
+        { type: "circle" }
+    >
+
+
+Получаем:
+type Circle = {
+    type: "circle";
+    radius: number;
+}
+
+!!!Это очень популярный паттерн при работе с Discriminated Unions.
+
+Внутри выглядит так:
+
+type Extract<T, U> =
+    T extends U
+        ? T
+        : never
+
+
+!!! Важный момент с объектами:
+
+Если написать:
+
+interface User {
+    name: string;
+    age: number;
+}
+
+type T =
+    Extract<
+        User,
+        { name: string }
+    >
+
+то результатом будет не  { name: string }, а Весь User !!!
+
+Потому что User extends { name: string }
 `}
           </pre>
         </NoteItem>
@@ -238,6 +337,35 @@ updatedAt: Date
 type Omit<T, K extends keyof any> = Pick<T, Exclude<keyof T, K>>
 `}
           </pre>
+        </NoteItem>
+      </Note>
+      <Note title='Индексная сигнатура'>
+        <NoteItem>
+          <pre>
+            {`
+[key: number]: unknown - говорит о том что всевозможные ключи объекта будут типа number
+а значениями будут любого неизвестного нам типа
+
+так же может быть:
+
+[key: symbol]: unknown
+или
+
+[key: string]: unknown
+
+
+по этому:
+1.
+type x = {
+  [n: number]: string
+}
+2.
+type y = Record<number, string>
+
+1 и 2 типы равны x = y
+            `}
+          </pre>
+          <p></p>
         </NoteItem>
       </Note>
       <Note title='Record<K, V>'>
@@ -276,16 +404,15 @@ const translations: Record<Language, string> = {
 type Record<K extends keyof any, T> = {
     [P in K]: T
 }
+
+keyof any = number | string | symbol
+
+K extends keyof any значит что ключами могут быть только number | string | symbol
 `}
           </pre>
         </NoteItem>
       </Note>
       <Note title='Readonly'>
-        <NoteItem>
-          <p></p>
-        </NoteItem>
-      </Note>
-      <Note title='Extract'>
         <NoteItem>
           <p></p>
         </NoteItem>
