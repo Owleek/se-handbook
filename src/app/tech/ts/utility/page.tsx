@@ -115,6 +115,54 @@ type Required<T> = {
           <p>Точно так же, как Partial, работает только на первом уровне.</p>
         </NoteItem>
       </Note>
+      <Note title='Readonly<T>'>
+        <NoteItem>
+          <p>Делает все свойства объекта доступными только для чтения.</p>
+          <pre>
+            {`
+Readonly<Type>
+
+Примеры:
+1.
+const COLORS = {
+    primary: "#00f",
+    danger: "#f00"
+}
+Readonly<typeof COLORS>
+
+
+2.
+interface User {
+    id: number
+    name: string
+}
+type T = Readonly<User>
+
+type T = {
+    readonly id: number
+    readonly name: string
+}
+
+Внутри устроен след образом:
+
+type Readonly<T> = {
+    readonly [K in keyof T]: T[K]
+}
+
+
+! Как и Partial, Readonly работает только поверхностно.
+
+
+// Что бы отменить readonly можно использовать "-":
+
+type Mutable<T> = {
+    -readonly [K in keyof T]: T[K]
+}
+
+`}
+          </pre>
+        </NoteItem>
+      </Note>
       <Note title='Pick<T, K>'>
         <NoteItem>
           <p>Берет только указанные свойства из существующего типа</p>
@@ -412,16 +460,6 @@ K extends keyof any значит что ключами могут быть то�
           </pre>
         </NoteItem>
       </Note>
-      <Note title='Readonly'>
-        <NoteItem>
-          <p></p>
-        </NoteItem>
-      </Note>
-      <Note title='NonNullable'>
-        <NoteItem>
-          <p></p>
-        </NoteItem>
-      </Note>
       <Note title='ReturnType'>
         <NoteItem>
           <p></p>
@@ -433,6 +471,11 @@ K extends keyof any значит что ключами могут быть то�
         </NoteItem>
       </Note>
       <Note title='Awaited'>
+        <NoteItem>
+          <p></p>
+        </NoteItem>
+      </Note>
+      <Note title='NonNullable'>
         <NoteItem>
           <p></p>
         </NoteItem>
