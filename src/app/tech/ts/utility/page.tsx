@@ -576,14 +576,74 @@ function debounce<T>(fn: T) {
           </pre>
         </NoteItem>
       </Note>
-      <Note title='Awaited'>
+      <Note title='Awaited<T>'>
         <NoteItem>
-          <p></p>
+          <p>Получает тип значения, которое находится внутри Promise.</p>
+          <pre>
+            {`
+Awaited<Promise<User>>
+
+Допустим есть функция:
+
+async function getUser() {
+    return {
+        id: 1,
+        name: "Alex"
+    }
+}
+
+Возвращает она Promise<User> а не User
+
+Если мне нужен тип именного самого User, тогда пришлось бы писать руками
+
+type User = {
+    id: number
+    name: string
+}
+
+Но благодаря Awaited, используем:
+
+type User = Awaited<ReturnType<typeof getUser>>
+
+И получим то же самое как то что писали бы руками
+
+
+Упрощенный вариант внутренней реализации:
+
+type Awaited<T> =
+    T extends Promise<infer U>
+        ? U
+        : T
+
+`}
+          </pre>
         </NoteItem>
       </Note>
-      <Note title='NonNullable'>
+      <Note title='NonNullable<T>'>
         <NoteItem>
-          <p></p>
+          <p>Убирает из типа null и undefined.</p>
+          <pre>
+            {`
+
+NonNullable<TypeWithNull&Undefined>
+
+Допустим есть: 
+
+type Dirty = string | null | undefined;
+
+type Pure = NonNullable<Dirty>;
+
+получим Pure = string
+
+
+Внутренняя реализация может отличаться в зависимости от версии TS, но главная идея такая:
+
+type MyNonNullable<T> =
+    T extends null | undefined
+        ? never
+        : T;
+`}
+          </pre>
         </NoteItem>
       </Note>
       <Note title='Other'>
