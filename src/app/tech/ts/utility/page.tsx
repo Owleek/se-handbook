@@ -660,6 +660,217 @@ type MyNonNullable<T> =
             Uncapitalize
           </p>
         </NoteItem>
+        <NoteItem>
+          <pre>{`InstanceType<T>`}</pre>
+          <p>Получает тип экземпляра класса из типа конструктора.</p>
+          <pre>{`
+class User {
+  name = "Alex";
+}
+
+type T = InstanceType<typeof User>;
+          `}</pre>
+          <p>typeof User - тип конструктора</p>
+          <p>
+            а InstanceType от typeof User это тип ОБЪЕКТА который будет получен
+            после вызова конструктора
+          </p>
+          <pre>
+            {`
+Пример использования:
+
+function create<T extends abstract new (...args: any) => any>(
+    Class: T
+): InstanceType<T> {
+    return new Class();
+}
+
+
+Внутренняя реализация:
+
+
+type InstanceType<T extends abstract new (...args: any) => any> =
+    T extends abstract new (...args: any) => infer R
+        ? R
+        : never;
+`}
+          </pre>
+        </NoteItem>
+        <NoteItem>
+          <pre>{`ConstructorParameters<T>`}</pre>
+          <p>Получает параметры конструктора класса в виде tuple.</p>
+          <pre>{`
+class User {
+    constructor(
+        public name: string,
+        public age: number
+    ) {}
+}
+
+type T = ConstructorParameters<typeof User>;
+
+
+Получаем: [string, number]
+
+Пример использования:
+
+function create<T extends new (...args: any) => any>(
+    Class: T,
+    ...args: ConstructorParameters<T>
+) {
+    return new Class(...args);
+}
+
+Внутренняя реализация:
+
+type ConstructorParameters<T extends abstract new (...args: any) => any> =
+    T extends abstract new (...args: infer P) => any
+        ? P
+        : never;
+          `}</pre>
+        </NoteItem>
+        <NoteItem>
+          <pre>{`
+          ThisParameterType<T>
+          `}</pre>
+          <p>Получает тип специального параметра this у функции.</p>
+          <pre>{`
+Пример:
+
+function greet(this: User, message: string) {
+    console.log(this.name, message);
+}
+
+function greet(this: User, message: string) {
+    console.log(this.name, message);
+}
+
+type T = ThisParameterType<typeof greet>;
+
+
+Внутренняя реализация: 
+
+type ThisParameterType<T> = T extends (this: infer U, ...args: any[]) => any
+        ? U
+        : unknown;
+          `}</pre>
+        </NoteItem>
+        <NoteItem>
+          <pre>{`
+          OmitThisParameter<T>
+          `}</pre>
+          <p>Создает новый тип функции, убирая у нее параметр this.</p>
+          <pre>{`
+Пример:
+
+Было:
+function greet(this: User, message: string) {}
+
+type T = OmitThisParameter<typeof greet>;
+
+Cтало:
+
+(message: string) => void
+          `}</pre>
+        </NoteItem>
+        <NoteItem>
+          <pre>{`
+          ThisType<T>
+          `}</pre>
+          <p>
+            Это особый тип, который позволяет TypeScript определить, каким будет
+            this внутри объекта. <br />
+            Это уже немного другая категория: ThisType используется
+            преимущественно с object literals и contextual typing.
+          </p>
+          <pre>{`
+Пример использования:
+
+type Store = {
+    name: string;
+};
+
+type Methods = {
+    greet(): void;
+};
+
+const store: Store & Methods & ThisType<Store> = {
+    name: "Alex",
+
+    greet() {
+        console.log(this.name);
+    }
+};
+
+
+ThisType<Store> - сообщает TypeScript othis для внутренних методов объекта — что this это Store.
+
+Без него TypeScript не обязательно сможет вывести нужный контекст this.
+
+
+Внутренняя реализация:
+
+interface ThisType<T> {}
+
+Практически пустой интерфейс. Это специальный marker type
+который TypeScript использует при contextual typing.
+          `}</pre>
+        </NoteItem>
+        <NoteItem>
+          <pre>{`
+          Uppercase<S>, Lowercase<S>, Capitalize<T>, Uncapitalize<S>
+          `}</pre>
+          <p>
+            Uppercase переводит все символы в переданном строковом типе в
+            верхний регистр.
+          </p>
+          <p>
+            Capitalize переводит в верхний регистр только первый символ строки,
+            оставляя остальные символы без изменений
+          </p>
+          <p>
+            Lowercase переводит все символы в переданном строковом типе в нижни
+            регистр.
+          </p>
+          <p>Uncapitalize - Делает первую букву строчной.</p>
+          <pre>{`
+Пример:
+
+type T = Uppercase<"hello">; -> "HELLO"
+
+type Status = "pending" | "approved" | "rejected";
+
+type UpperStatus = Uppercase<Status>; 
+// Результат: "PENDING" | "APPROVED" | "REJECTED"
+
+
+
+type Event = "click" | "hover";
+
+type Handler = \`on\${Capitalize<Event>}\`;
+
+// Результат: "onClick" | "onHover"
+
+
+type CapStatus = Capitalize<Status>; 
+// Результат: "Pending" | "Approved" | "Rejected"
+
+
+Если передать num в Uppercase<> или Capitalize, вызовет ошибку компиляции, 
+так как утилитные типы ожидают именно строковый тип данных.
+
+
+Внутренняя реализация:
+
+type Uppercase<S extends string> = intrinsic;
+type Lowercase<S extends string> = intrinsic;
+type Capitalize<S extends string> = intrinsic;
+type Uncapitalize<S extends string> = intrinsic;
+
+Это intrinsic type, нет обычной реализации, TypeScript знает специальное поведение intrinsic.
+
+          `}</pre>
+        </NoteItem>
       </Note>
     </>
   );
