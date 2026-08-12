@@ -306,7 +306,66 @@ type Three = {
       </Note>
       <Note title='enum (obj const)'>
         <NoteItem>
-          <p></p>
+          <p>
+            enum - это константы, но в отличии от других ts типов, enum не
+            пропадает после компиляции, по сути он превращается в объект
+          </p>
+          <p>
+            TS - это код до компиляции, а enum этому не соответствует, по этому
+            на практике чаще используют object as const чем enum
+          </p>
+          <p>Так же у enum есть одна особенность</p>
+          <pre>
+            {`
+Если мы используем что то вроде:
+
+enum Direction {
+  Up,
+  Down,
+  Left,
+  Right
+}
+
+то фактически значения создаются автоматически:
+
+Up = 0
+Down = 1
+Left = 2
+Right = 3
+
+Direction.Up // 0
+Direction[0] // "Up"
+
+
+По этому:
+
+Вместо 
+
+enum Role {
+  Admin = 'admin',
+  User = 'user'
+}
+
+Используют
+
+const Role = {
+  Admin: 'admin',
+  User: 'user'
+} as const;
+
+
+
+в run-time enum превращается в:
+
+"use strict";
+var Role;
+(function (Role) {
+    Role["Admin"] = "admin";
+    Role["User"] = "user";
+})(Role || (Role = {}));
+
+`}
+          </pre>
         </NoteItem>
       </Note>
     </>
