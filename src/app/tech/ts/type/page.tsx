@@ -59,11 +59,6 @@ type Two = {b: string}
           </p>
         </NoteItem>
       </Note>
-      <Note title='Declarations'>
-        <NoteItem>
-          <p></p>
-        </NoteItem>
-      </Note>
     </>
   );
 }

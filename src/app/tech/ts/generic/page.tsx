@@ -3,26 +3,6 @@ import { Note, NoteItem } from '@/shared/ui/Note';
 export default function Template() {
   return (
     <>
-      <Note title='Generic Objects'>
-        <NoteItem>
-          <p></p>
-        </NoteItem>
-      </Note>
-      <Note title='Generic Functions'>
-        <NoteItem>
-          <p></p>
-        </NoteItem>
-      </Note>
-      <Note title='Generic Classes'>
-        <NoteItem>
-          <p></p>
-        </NoteItem>
-      </Note>
-      <Note title='Generic Conditions'>
-        <NoteItem>
-          <p></p>
-        </NoteItem>
-      </Note>
       <Note title='Generics'>
         <NoteItem>
           <p>
