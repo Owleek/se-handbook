@@ -4,26 +4,17 @@ export default function Template() {
   return (
     <>
       <Note title='Оглавление'>
-        1 Система типов (any, unknown, never, void, null, undefined, literal
-        types) <br />
-        2 Union и Intersection Types <br />
-        3 Interfaces vs Type Alias <br />
-        4 Generics <br />
-        5 Type Narrowing + Type Guards <br />
-        6 Функции (типизация, перегрузки, optional/rest параметры, this) <br />
-        7 Utility Types (Pick, Omit, Partial, Record, ReturnType и др.) <br />
-        8 keyof, typeof, Indexed Access Types <br />9 Mapped Types 10
-        Conditional Types + infer
+        1. Причины появления TS <br />
+        2. Супертипы и подтипы <br />
+        3. Виды типов (Множества) (any, unknown, never, void, null, undefined,
+        literal types) <br />
+        4. Объединения и Пересечения <br />
+        5. keyof typeof in <br />
+        6. class syntax <br />
+        7. enum (obj const) <br />
+        8. декларации
       </Note>
-      <Note title='Оглавление'>
-        <p>
-          <p>
-            Причины TS / Cупер типы и подтипы / Виды типов (множества) /
-            Пересечения / Преобразования / keyof typeof in / enum (obj const)
-          </p>
-        </p>
-      </Note>
-      <Note title='Причины TS'>
+      <Note title='Причины появления TS'>
         <NoteItem>
           <p>
             JS - слаботипизированный язык, а так же в нем динамическая типизация
@@ -204,11 +195,6 @@ const tempArray: UserArray = [23, 'Sanya'] - так ошибка
         <NoteItem>
           <p>A | B = union (объединение)</p>
           <p>A & B = intersection (пересечение) частный случай объединения</p>
-        </NoteItem>
-      </Note>
-      <Note title='Преобразования'>
-        <NoteItem>
-          <p></p>
         </NoteItem>
       </Note>
       <Note title='keyof typeof in'>
