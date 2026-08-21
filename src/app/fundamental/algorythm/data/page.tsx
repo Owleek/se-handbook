@@ -10,8 +10,14 @@ export default function Template() {
         <p>Массив</p>
         <p>Хеш-таблица / Словарь (Hash Map)</p>
         <p>Множества Map / Set</p>
-        <p>Стек</p>
-        <p>Очередь</p>
+        <p>stack и queue - абстрактные структуры данных</p>
+        <p>
+          Queue(очередь) - FIFO (first in - first out), классическая очередь
+        </p>
+        <p>
+          Stack (стек) - Lifo (last in - first out), стопка бумаг (рекурсия,
+          коллстек)
+        </p>
         <br />
         <p>Понимать принцип работы</p>
         <br />
