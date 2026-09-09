@@ -5,7 +5,7 @@ export default function Template() {
   return (
     <Note title='Class / Constructor / Prototype'>
       <NoteItem>
-        <p>this в стрелочных функциях класса и объекта</p>
+        <p>Методы объекта с присваиванием, стрелки</p>
         <p>
           методы класса попадают в прототип, но если мы хотим чтобы они стали
           личными методами инстанса, тогда метод надо объявить через
@@ -29,6 +29,46 @@ class User {
      ....
   }
 }
+
+
+class User {
+  name = "User"
+    
+  run = function() {  // личный метод инстанса
+     console.log(this.name) // this определяется способом вызова функции
+  }
+
+  walk = () => { //!!!Стрелка!!! тоже личный метод инстанса
+     console.log(this.name)  // но this берется из лекс.окружения в момент создания
+  } // а метод создатся когда вызовается класс, и он для инстанса создаст этот метод
+    // следовательно тот конкретный инстанс будет лекс.окружением для стрелки
+
+  swim() { // метод prototype, но this определяется способов вызова функции
+      console.log(this.name)
+  }
+}
+
+User.prototype.bark = () => {
+    console.log(this) // метод prototype, стрелка уже создана в глобальном окружении, и this будет равен window независимо от того каким спопобом будет вызвана функция
+}
+
+const obj = new User()
+
+const zver = {
+    name: "Zver"
+}
+
+zver.run = obj.run
+zver.walk = obj.walk
+zver.swim = obj.swim
+zver.bark = obj.bark
+zver.binded = obj.bark.bind(zver)
+
+zver.run()  // Zver
+zver.walk() // User
+zver.swim()  // Zver
+zver.bark()  // window
+zver.binded() // window
 
           `}
         </pre>
