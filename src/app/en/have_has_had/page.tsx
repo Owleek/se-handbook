@@ -61,7 +61,14 @@ export default function Template() {
           <p>have been - Present Perfect</p>
           <p>has been - Present Perfect</p>
           <p>had been - Past Perfect</p>
-          <p></p>
+          <br />
+          <p>
+            Итог: <br />
+            Возьмем произвольный глагол, его форма может меняться в зависимости
+            от подлежащего в рамках одного и того же времени. <br />
+            Теперь зафиксируем подлежащее, и изменим время, то и в этом случае
+            форма глагола может измениться
+          </p>
         </NoteItem>
       </Note>
     </>
