@@ -1,14 +1,14 @@
 import React from 'react';
-import { Note, NoteItem } from '@/shared/ui/Note';
+import { Note, NoteItem, NoteTittle, NoteSubTittle } from '@/shared/ui/Note';
 
 export default function Template() {
   return (
     <Note title='Лексическое окружение'>
       <NoteItem>
-        <h3>
-          Что такое лексическое окружение ? Что такое замыкание ? Области
-          видимости ? В чем разница между var и const ? Что такое hoisting ?
-        </h3>
+        <NoteSubTittle>
+          Что такое лексическое окружение / Что такое замыкание / Области
+          видимости / В чем разница между var и const / Что такое hoisting
+        </NoteSubTittle>
         <p>
           У каждого участка кода, блока, функции - есть связанное с ним
           лексическое окружение, это абстрактная структура (LexicalEnvironment),
@@ -21,6 +21,9 @@ export default function Template() {
           У глобального лексического окружения ссылка на внешнее лексическое
           окружение является - null.
         </p>
+        <NoteSubTittle>
+          Замыкание
+        </NoteSubTittle>
         <p>
           Замыкание - это способность функции взаимодействовать с переменными
           доступными ей по лексическому окружению, независимо от места вызова
@@ -34,6 +37,9 @@ export default function Template() {
           только внутри блоков) 3. Функциональная (переменные доступны только
           внутри функции)
         </p>
+        <NoteSubTittle>
+          var
+        </NoteSubTittle>
         <p>
           var - это старый способ объявления переменной, ему на смену пришли два
           новых способа объявления переменных в стандарте es6 это let и const.
@@ -61,6 +67,9 @@ export default function Template() {
           возникнет ошибка (мертвая зона). Значения в эти поля будут записаны в
           том момент когда движок дойдет до места их объявления
         </p>
+        <NoteSubTittle>
+          Function declaration / hoisting
+        </NoteSubTittle>
         <p>
           Function declaration в контексте hoisting и вовсе инициализирована уже
           на фазе создания контекста, и ее можно вызвать раньше ее объявления.
@@ -76,6 +85,9 @@ export default function Template() {
           важно скорость на стадии инициализации а важна скорость работы в
           процессе, то выбираем function declaraion
         </p>
+        <NoteSubTittle>
+          Замыкания
+        </NoteSubTittle>
         <p>
           Замыкания используются как инкапсулирование, c помощью них можно
           создавать фабрику функций, например можем зашить какой то фетч с
