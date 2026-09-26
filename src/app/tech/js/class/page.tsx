@@ -1,11 +1,13 @@
 import React from 'react';
-import { Note, NoteItem } from '@/shared/ui/Note';
+import { Note, NoteItem, NoteTittle, NoteSubTittle } from '@/shared/ui/Note';
 
 export default function Template() {
   return (
     <Note title='Class / Constructor / Prototype'>
       <NoteItem>
-        <p>стрелки</p>
+        <NoteSubTittle>
+          Cтрелки
+        </NoteSubTittle>
         <p>
           методы класса попадают в прототип, но если мы хотим чтобы они стали
           личными методами инстанса, тогда метод надо объявить через
@@ -84,6 +86,9 @@ zver.binded() // window
           не зависит от входных данных его можно объвлять и присваивать значение
           вне constructor
         </p>
+        <NoteSubTittle>
+          User.prototype
+        </NoteSubTittle>
         <p>
           User.prototype - это объект который будет установлен прототипом для
           инстанса этого класса <br />
@@ -183,12 +188,14 @@ class Second extends First {
   }
 }
         `}</pre>
+        <br />
         <p>
           Объект не создает лексическое окружение, по этому в стрелочном методе
           this будет указывать на window/undefinded <br />
           Таким образом лексическое окружение создают: функция, блок кода {} но
           не объект, try, catch, модуль
         </p>
+        <br />
         <p>
           Стрелочная функция {`() => {}`} создавалась с той мыслью, что нужно
           крошечная функция пустышка, которая просто выполнит код в котором она
