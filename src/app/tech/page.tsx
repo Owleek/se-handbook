@@ -9,6 +9,8 @@ export default function Javascript() {
       <TileLink href='/tech/react'>React</TileLink>
       <TileLink href='/tech/ts'>TS</TileLink>
       <TileLink href='/tech/cli'>Linux Cli</TileLink>
+      <TileLink href='/tech/docker'>Docker</TileLink>
+      <TileLink href='/tech/nodejs'>Nodejs</TileLink>
     </TileGrid>
   );
 }
