@@ -1,4 +1,4 @@
-import { Note, NoteItem } from '@/shared/ui/Note';
+import { Note, NoteItem, NoteSubTittle } from '@/shared/ui/Note';
 
 export default function Template() {
   return (
@@ -40,21 +40,18 @@ const mul: TMultiply = function (a, b) {
 }
 
 `}</pre>
-          <p>Перегрузка функций:</p>
+          <NoteSubTittle>
+            Перегрузка функций
+          </NoteSubTittle>
           <p>
             Описание перерегрузки говорит о том что в функцию аргументы можно
-            передать в ином формате а так же возможен другой формат
+            передать в ином формате, а так же возможен другой формат
             возвращаемого значения этой функции
           </p>
           <p>
             например в первом случае в функцию передается строка, а другом
             случае массив, и возвращаемое значение тоже может отличаться
           </p>
-        </NoteItem>
-      </Note>
-      <Note title='Classes'>
-        <NoteItem>
-          <p></p>
         </NoteItem>
       </Note>
       <Note title='Objects'>
