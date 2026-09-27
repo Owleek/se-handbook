@@ -1,4 +1,4 @@
-import { Note, NoteItem } from '@/shared/ui/Note';
+import { Note, NoteItem, NoteSubTittle } from '@/shared/ui/Note';
 
 export default function Template() {
   return (
@@ -86,7 +86,9 @@ const er_subtype: Two = er_supertype - тут нехватает  surname, по 
       </Note>
       <Note title='Виды типов (Множества)'>
         <NoteItem>
-          <p>Примитивные:</p>
+          <NoteSubTittle>
+            Примитивные:
+          </NoteSubTittle>
           <p>bigint - это тип bigint</p>
           <p>string, number, boolean</p>
           <p>null в ts - это литеральный null, не object</p>
@@ -94,11 +96,15 @@ const er_subtype: Two = er_supertype - тут нехватает  surname, по 
           <p>symbol</p>
         </NoteItem>
         <NoteItem>
-          <p>Составные:</p>
+          <NoteSubTittle>
+            Составные:
+          </NoteSubTittle>
           <p>Объекты, массивы, функции, пересечения, дженерики</p>
         </NoteItem>
         <NoteItem>
-          <p>Специальные:</p>
+        <NoteSubTittle>
+          Специальные:
+        </NoteSubTittle>
           <p>
             unknown - надможество для всевозможных множеств, требует доказать
             тип проверкой перед его использованием

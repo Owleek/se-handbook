@@ -1,4 +1,4 @@
-import { Note, NoteItem } from '@/shared/ui/Note';
+import { Note, NoteItem, NoteSubTittle } from '@/shared/ui/Note';
 
 export default function Template() {
   return (
@@ -133,8 +133,11 @@ export default function Template() {
         </p>
         <br />
         <br />
+        <NoteSubTittle>
+            Concurent Rendering
+        </NoteSubTittle>
         <p>
-          <b>Concurent Rendering</b> - начиная с версии React 18, появился
+          Concurent Rendering - начиная с версии React 18, появился
           конкурентный рендеринг, суть в том что React теперь может прервать
           рендер дерева (отрендерил компонент, обработал пользовательское
           действие, рендерит следующий компонент), раньше реакт рендереил дерево
@@ -159,9 +162,9 @@ export default function Template() {
         </p>
         <br />
         <br />
-        <p>
-          <b>Class Component vs Function Component (Hooks)</b>
-        </p>
+        <NoteSubTittle>
+          Class Component vs Function Component (Hooks)
+        </NoteSubTittle>
         <p>
           С 16 версии по 16.8 закладывался фундамент для функциональных компоент
         </p>

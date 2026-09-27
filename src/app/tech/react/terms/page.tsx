@@ -1,11 +1,14 @@
-import { Note, NoteItem } from '@/shared/ui/Note';
+import { Note, NoteItem, NoteSubTittle } from '@/shared/ui/Note';
 
 export default function Template() {
   return (
     <Note title='Terms'>
       <NoteItem>
+        <NoteSubTittle>
+          Batching
+        </NoteSubTittle>
         <p>
-          <b>Batching</b> - актуальное объединение setState в реакт появилось в
+          Batching - актуальное объединение setState в реакт появилось в
           18 версии, когда батчинг объединяет вызовы setState в один рендер
           независимо от того где вызваны эти setState. <br />
           Однако сам по себе батчинг в рамках React обработчиков событий типа
@@ -13,16 +16,19 @@ export default function Template() {
         </p>
         <br />
         <br />
+        <NoteSubTittle>
+          Сравнение State
+        </NoteSubTittle>
         <p>
-          <b>Сравнение State</b> - Для примитивов state сравнивается по
+          Для примитивов state сравнивается по
           значению, а для ссылочных типов по ссылке, если ссылка или значение не
           изменилась, перерендера не произойдет!
         </p>
         <br />
         <br />
-        <p>
-          <b>Для чего нужен React ?</b>
-        </p>
+        <NoteSubTittle>
+          Для чего нужен React ?
+        </NoteSubTittle>
         <p>
           Главная причина появления React и других библиотек в том что он сильно
           упрощает задачу обновления UI. Реактивность библиотек заключается в
@@ -50,8 +56,9 @@ export default function Template() {
           если на одной и то же позиции 5 изменилась на 5, react не будет из за
           этого обновлять реальный dom
         </p>
-        <br />
-        <p>Почему React а не Angular или Vue</p>
+        <NoteSubTittle>
+          Почему React а не Angular или Vue
+        </NoteSubTittle>
         <p>
           У Angular многие архитектурные решения уже готовы и рекомендованы для
           использованию поскольку они отлажены на уровне фреймворка, это сильно
@@ -72,8 +79,11 @@ export default function Template() {
         </p>
         <br />
         <br />
+        <NoteSubTittle>
+          События
+        </NoteSubTittle>
         <p>
-          <b>События</b> - React использует свою обертку на нативными событиями
+          React использует свою обертку на нативными событиями
           браузера, когда IE еще поддерживался, он служил адаптером для
           кроссбраузерности, предоставляя разработчику единый интерфейс
           управления, ныне остается оберткой
@@ -113,12 +123,18 @@ export default function Template() {
         </p>
         <br />
         <br />
+        <NoteSubTittle>
+          PureComponent
+        </NoteSubTittle>
         <p>
-          <b>PureComponent</b> - Reac предотвращает перерендер компонента если
+          Reac предотвращает перерендер компонента если
           props не изменились, его аналог React.memo
         </p>
         <br />
         <br />
+        <NoteSubTittle>
+          Code Splitting и Lazy лоадинг
+        </NoteSubTittle>
         <p>
           <b>Code Splitting и Lazy лоадинг</b> - это процесс разбиения единого
           бандла на части
@@ -137,7 +153,9 @@ export default function Template() {
         </p>
         <br />
         <br />
-        <p>Ключевые отличия версий React</p>
+        <NoteSubTittle>
+          Ключевые отличия версий React
+        </NoteSubTittle>
         <p>Что что до 16.8 - классовые компоненты</p>
         <p>16-16.8 (Fiber, Error Boundaries, Fragments, Portals) - Hooks</p>
         <p>
